@@ -28,6 +28,7 @@ async function playSounds(matrix: boolean[][]) {
     for (let row = 0; row < numRows; row++) {
       if (matrix[row][col] == true) {
         Sound(notes[row]);
+        console.log(notes[row]);
         await delay(1);
       }
       await delay(1);
