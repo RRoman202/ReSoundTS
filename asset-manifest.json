@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ReSoundTS/static/css/main.1ed971c9.css",
-    "main.js": "/ReSoundTS/static/js/main.90b2d14c.js",
+    "main.js": "/ReSoundTS/static/js/main.d0f8a8f5.js",
     "static/js/787.cd7d7d7f.chunk.js": "/ReSoundTS/static/js/787.cd7d7d7f.chunk.js",
     "index.html": "/ReSoundTS/index.html",
     "main.1ed971c9.css.map": "/ReSoundTS/static/css/main.1ed971c9.css.map",
-    "main.90b2d14c.js.map": "/ReSoundTS/static/js/main.90b2d14c.js.map",
+    "main.d0f8a8f5.js.map": "/ReSoundTS/static/js/main.d0f8a8f5.js.map",
     "787.cd7d7d7f.chunk.js.map": "/ReSoundTS/static/js/787.cd7d7d7f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1ed971c9.css",
-    "static/js/main.90b2d14c.js"
+    "static/js/main.d0f8a8f5.js"
   ]
 }
