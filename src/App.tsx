@@ -12,8 +12,8 @@ function App() {
         <Router>
           <Navbar></Navbar>
           <Routes>
-            <Route path="/piano" element={<Piano />} />
-            <Route path="/home" />
+            <Route path="ReSoundTS/piano" element={<Piano />} />
+            <Route path="ReSoundTS/home" />
           </Routes>
         </Router>
       </header>

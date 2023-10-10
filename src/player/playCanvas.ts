@@ -1,6 +1,5 @@
-import { GridCanvas } from "../components/Canvas/Canvas";
 import GetNotes from "../player/Notes";
-import { Sound, SoundRemove } from "../handlers/btnClickPianoRoll";
+import { Sound } from "../handlers/btnClickPianoRoll";
 
 const notes: string[] = GetNotes();
 

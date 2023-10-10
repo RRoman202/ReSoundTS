@@ -1,8 +1,8 @@
 {
   "name": "untitled",
   "version": "0.1.0",
+  "homepage": "https://RRoman202.github.io/ReSoundTS/",
   "private": true,
-  "homepage": "https://RRoman202.github.io/ReSound/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
