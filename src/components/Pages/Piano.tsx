@@ -7,6 +7,7 @@ import "./Piano.css";
 import playSounds, { m } from "../../player/playCanvas";
 import Getnotes from "../../player/Notes";
 import "../../handlers/keyboardHandler";
+import ProgressBar from "../progress";
 import {
   Col,
   Row,
@@ -29,6 +30,7 @@ import {
 } from "@ant-design/icons";
 import { GridCanvas } from "../Canvas/Canvas";
 import { SoundRemove } from "../../handlers/btnClickPianoRoll";
+import { start } from "repl";
 
 const notes = Getnotes();
 
@@ -37,7 +39,14 @@ const handleMenuClick = (e: MouseEvent) => {
 };
 
 const { Header, Content, Footer } = Layout;
-
+interface ProgressBarProps {
+  handleStartMoving: () => void;
+}
+let startProgressBar: () => void;
+export const Prog: React.FC<ProgressBarProps> = ({ handleStartMoving }) => {
+  startProgressBar = { handleStartMoving }.handleStartMoving;
+  return null;
+};
 function Piano() {
   const rows: JSX.Element[] = [];
   for (let i = 0; i < notes.length; i++) {
@@ -116,6 +125,7 @@ function Piano() {
               }}
             >
               <Col className="pianoCol">{rows}</Col>
+              <ProgressBar></ProgressBar>
               <GridCanvas
                 rows={notes.length}
                 cols={140}
@@ -144,7 +154,10 @@ function Piano() {
             />
           </Tooltip>
           <Button
-            onClick={() => playSounds(m)}
+            onClick={() => {
+              playSounds(m);
+              startProgressBar();
+            }}
             type="primary"
             shape="circle"
             className="play-btn"
