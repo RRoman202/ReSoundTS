@@ -54,3 +54,6 @@
   display: flex;
   margin-bottom: 25px;
 }
+.play-button {
+  margin-right: 10px;
+}

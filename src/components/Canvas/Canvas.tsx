@@ -56,7 +56,6 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
     }
   }
   useEffect(() => {
-    console.log(grid);
     drawCells();
   }, [grid]);
 
@@ -109,7 +108,7 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
           const rect = canvasRef.current!.getBoundingClientRect();
           const x = Math.floor((e.clientX - rect.left) / props.cellSize);
           const y = Math.floor((e.clientY - rect.top) / props.cellSize);
-          SoundRemove(notes[y]);
+          SoundRemove();
           handleMouseUp();
         }}
       />

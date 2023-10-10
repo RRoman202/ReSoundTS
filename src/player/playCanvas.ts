@@ -1,5 +1,5 @@
 import GetNotes from "../player/Notes";
-import { Sound } from "../handlers/btnClickPianoRoll";
+import { Sound, SoundRemove } from "../handlers/btnClickPianoRoll";
 
 const notes: string[] = GetNotes();
 
@@ -20,18 +20,19 @@ function delay(time: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-async function playSounds(matrix: boolean[][]) {
-  const numRows: number = matrix.length;
-  const numCols: number = matrix[0].length;
-
-  for (let col = 0; col < numCols; col++) {
-    for (let row = 0; row < numRows; row++) {
-      if (matrix[row][col] == true) {
-        Sound(notes[row]);
-        console.log(notes[row]);
+async function playSounds(matrix: boolean[][], isPlaying: boolean) {
+  if (!isPlaying) {
+    const numRows: number = matrix.length;
+    const numCols: number = matrix[0].length;
+    for (let col = 0; col < numCols; col++) {
+      for (let row = 0; row < numRows; row++) {
+        if (matrix[row][col] == true) {
+          Sound(notes[row]);
+          console.log(notes[row]);
+        }
       }
+      await delay(500);
     }
-    await delay(500);
   }
 }
 

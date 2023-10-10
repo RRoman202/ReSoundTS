@@ -27,24 +27,27 @@ import {
   DownOutlined,
   CaretDownOutlined,
   SoundTwoTone,
+  PauseCircleFilled,
 } from "@ant-design/icons";
 import { GridCanvas } from "../Canvas/Canvas";
 import { SoundRemove } from "../../handlers/btnClickPianoRoll";
 import { start } from "repl";
 
 const notes = Getnotes();
-
-const handleMenuClick = (e: MouseEvent) => {
-  message.info("Выбран звук");
-};
-
+let isPlaying: boolean = false;
 const { Header, Content, Footer } = Layout;
 interface ProgressBarProps {
   handleStartMoving: () => void;
+  stopMoving: () => void;
 }
 let startProgressBar: () => void;
-export const Prog: React.FC<ProgressBarProps> = ({ handleStartMoving }) => {
+let stopMovingBar: () => void;
+export const Prog: React.FC<ProgressBarProps> = ({
+  handleStartMoving,
+  stopMoving,
+}) => {
   startProgressBar = { handleStartMoving }.handleStartMoving;
+  stopMovingBar = { stopMoving }.stopMoving;
   return null;
 };
 function Piano() {
@@ -55,8 +58,8 @@ function Piano() {
         <Button
           className={"ant-btn-default " + keyColor(notes[i])}
           onMouseDown={() => Sound(notes[i])}
-          onMouseUp={() => SoundRemove(notes[i])}
-          onMouseLeave={() => SoundRemove(notes[i])}
+          onMouseUp={() => SoundRemove()}
+          onMouseLeave={() => SoundRemove()}
         >
           {notes[i]}
         </Button>
@@ -153,16 +156,30 @@ function Piano() {
               onClick={backDown}
             />
           </Tooltip>
-          <Button
-            onClick={() => {
-              playSounds(m);
-              startProgressBar();
-            }}
-            type="primary"
-            shape="circle"
-            className="play-btn"
-            icon={<CaretRightOutlined />}
-          ></Button>
+          <div className="play-btn">
+            <Button
+              onClick={() => {
+                playSounds(m, isPlaying);
+                isPlaying = true;
+
+                startProgressBar();
+              }}
+              type="primary"
+              shape="circle"
+              className="play-button"
+              icon={<CaretRightOutlined />}
+            ></Button>
+            <Button
+              onClick={() => {
+                stopMovingBar();
+                SoundRemove();
+                isPlaying = false;
+              }}
+              type="primary"
+              shape="circle"
+              icon={<PauseCircleFilled />}
+            ></Button>
+          </div>
         </Footer>
       </Layout>
     </>

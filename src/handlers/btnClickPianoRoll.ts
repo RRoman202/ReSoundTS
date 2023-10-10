@@ -8,6 +8,6 @@ export function Sound(note: string): void {
   });
 }
 
-export function SoundRemove(note: string): void {
-  sampler.triggerRelease(note);
+export function SoundRemove(): void {
+  sampler.releaseAll();
 }

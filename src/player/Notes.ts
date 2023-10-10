@@ -2,20 +2,20 @@ import React from "react";
 
 function Getnotes(): string[] {
   const notes: string[] = [
-    "C",
-    "C#",
-    "D",
-    "D#",
-    "E",
-    "F",
-    "F#",
-    "G",
-    "G#",
-    "A",
-    "A#",
     "B",
+    "A#",
+    "A",
+    "G#",
+    "G",
+    "F#",
+    "F",
+    "E",
+    "D#",
+    "D",
+    "C#",
+    "C",
   ];
-  const octaves: number[] = [1, 2, 3, 4, 5, 6, 7];
+  const octaves: number[] = [7, 6, 5, 4, 3, 2, 1];
   const allNotes: string[] = [];
   octaves.forEach((octave: number) => {
     notes.forEach((note: string) => {
