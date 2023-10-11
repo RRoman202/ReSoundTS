@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent } from "react";
+import React, { FC, MouseEvent, useEffect } from "react";
 import { useState } from "react";
 import PropTypes, { InferProps } from "prop-types";
 import { Sound } from "../../handlers/btnClickPianoRoll";
@@ -19,6 +19,7 @@ import {
   Space,
   message,
   Slider,
+  Modal,
 } from "antd";
 import Sider from "antd/es/layout/Sider";
 import {
@@ -32,8 +33,11 @@ import {
 import { GridCanvas } from "../Canvas/Canvas";
 import { SoundRemove } from "../../handlers/btnClickPianoRoll";
 import { start } from "repl";
+import { BaseUrl } from "../../player/playSound";
 
 const notes = Getnotes();
+let url: string = "https://tonejs.github.io/audio/salamander/";
+let filename: string = "C4.mp3";
 let isPlaying: boolean = false;
 const { Header, Content, Footer } = Layout;
 interface ProgressBarProps {
@@ -51,6 +55,50 @@ export const Prog: React.FC<ProgressBarProps> = ({
   return null;
 };
 function Piano() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const ChooseSound = (soundname: string) => {
+    switch (soundname) {
+      case "arp": {
+        url = "https://tonejs.github.io/audio/berklee/";
+        filename = "Arp_note.mp3";
+        break;
+      }
+      case "piano": {
+        url = "https://tonejs.github.io/audio/salamander/";
+        filename = "C4.mp3";
+        break;
+      }
+      case "bang": {
+        url = "https://tonejs.github.io/audio/berklee/";
+        filename = "Bang_Tin_1.mp3";
+        break;
+      }
+      case "kalimba": {
+        url = "https://tonejs.github.io/audio/berklee/";
+        filename = "Kalimba_1.mp3";
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+
+    setIsModalOpen(false);
+  };
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   const rows: JSX.Element[] = [];
   for (let i = 0; i < notes.length; i++) {
     rows.push(
@@ -66,6 +114,7 @@ function Piano() {
       </Row>
     );
   }
+  useEffect(() => {}, [url]);
   return (
     <>
       <Layout className="layoutPiano">
@@ -88,13 +137,42 @@ function Piano() {
                 onClick={backUp}
               />
             </Tooltip>
-
-            <div
-              style={{
-                color: "white",
-              }}
-            ></div>
-
+            <Button
+              type="primary"
+              className="choose-sound-button"
+              onClick={showModal}
+            >
+              Выбрать звук
+            </Button>
+            <Modal
+              title="Выбор звука"
+              open={isModalOpen}
+              okText="Ок"
+              cancelText="Отмена"
+              onOk={handleOk}
+              onCancel={handleCancel}
+            >
+              <p>
+                <Button type="primary" onClick={() => ChooseSound("piano")}>
+                  Piano
+                </Button>
+              </p>
+              <p>
+                <Button type="primary" onClick={() => ChooseSound("arp")}>
+                  Arp Synth
+                </Button>
+              </p>
+              <p>
+                <Button type="primary" onClick={() => ChooseSound("bang")}>
+                  Bang
+                </Button>
+              </p>
+              <p>
+                <Button type="primary" onClick={() => ChooseSound("kalimba")}>
+                  Kalimba
+                </Button>
+              </p>
+            </Modal>
             <SoundTwoTone
               style={{
                 fontSize: "25px",
@@ -131,7 +209,7 @@ function Piano() {
               <ProgressBar></ProgressBar>
               <GridCanvas
                 rows={notes.length}
-                cols={140}
+                cols={34}
                 cellSize={40}
               ></GridCanvas>
             </Row>
@@ -182,6 +260,7 @@ function Piano() {
           </div>
         </Footer>
       </Layout>
+      <BaseUrl url={url} filename={filename}></BaseUrl>
     </>
   );
 }

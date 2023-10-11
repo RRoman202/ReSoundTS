@@ -12,7 +12,6 @@ export const Matrix: React.FC<MatrixProps> = ({ grid }) => {
   const matrix = { grid };
   const matrix2 = matrix.grid;
   m = matrix2;
-  console.log(m);
   return null;
 };
 

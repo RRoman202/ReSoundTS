@@ -52,8 +52,11 @@
 }
 .divMenuPiano {
   display: flex;
-  margin-bottom: 25px;
+  justify-content: flex-start;
 }
 .play-button {
   margin-right: 10px;
+}
+.choose-sound-button {
+  margin-left: 100px;
 }
