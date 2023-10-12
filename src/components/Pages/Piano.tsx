@@ -1,43 +1,29 @@
-import React, { FC, MouseEvent, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import PropTypes, { InferProps } from "prop-types";
+import PropTypes from "prop-types";
 import { Sound } from "../../handlers/btnClickPianoRoll";
-import { Button, Grid } from "antd";
+import { Button } from "antd";
 import "./Piano.css";
+import { url, filename } from "./chooseSound";
+import ChooseSoundFunction from "./chooseSound";
 import playSounds, { m } from "../../player/playCanvas";
+import { backDown, backUp } from "./scrollFunction";
 import Getnotes from "../../player/Notes";
 import "../../handlers/keyboardHandler";
 import ProgressBar from "../progress";
-import {
-  Col,
-  Row,
-  Layout,
-  FloatButton,
-  Watermark,
-  Tooltip,
-  Dropdown,
-  Space,
-  message,
-  Slider,
-  Modal,
-} from "antd";
-import Sider from "antd/es/layout/Sider";
+import { Col, Row, Layout, Tooltip, Slider, Modal } from "antd";
 import {
   CaretUpOutlined,
   CaretRightOutlined,
-  DownOutlined,
   CaretDownOutlined,
   SoundTwoTone,
   PauseCircleFilled,
 } from "@ant-design/icons";
 import { GridCanvas } from "../Canvas/Canvas";
 import { SoundRemove } from "../../handlers/btnClickPianoRoll";
-import { start } from "repl";
 import { BaseUrl } from "../../player/playSound";
-
 const notes = Getnotes();
-let url: string = "https://tonejs.github.io/audio/salamander/";
-let filename: string = "C4.mp3";
+
 let isPlaying: boolean = false;
 const { Header, Content, Footer } = Layout;
 interface ProgressBarProps {
@@ -56,36 +42,6 @@ export const Prog: React.FC<ProgressBarProps> = ({
 };
 function Piano() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const ChooseSound = (soundname: string) => {
-    switch (soundname) {
-      case "arp": {
-        url = "https://tonejs.github.io/audio/berklee/";
-        filename = "Arp_note.mp3";
-        break;
-      }
-      case "piano": {
-        url = "https://tonejs.github.io/audio/salamander/";
-        filename = "C4.mp3";
-        break;
-      }
-      case "bang": {
-        url = "https://tonejs.github.io/audio/berklee/";
-        filename = "Bang_Tin_1.mp3";
-        break;
-      }
-      case "kalimba": {
-        url = "https://tonejs.github.io/audio/berklee/";
-        filename = "Kalimba_1.mp3";
-        break;
-      }
-      default: {
-        break;
-      }
-    }
-
-    setIsModalOpen(false);
-  };
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -114,21 +70,11 @@ function Piano() {
       </Row>
     );
   }
-  useEffect(() => {}, [url]);
+
   return (
     <>
       <Layout className="layoutPiano">
-        <Header
-          className="header"
-          style={{
-            position: "sticky",
-            top: 0,
-            zIndex: 1,
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
+        <Header className="header">
           <div className="divMenuPiano">
             <Tooltip title="Вверх" className="btnUp">
               <Button
@@ -152,43 +98,11 @@ function Piano() {
               onOk={handleOk}
               onCancel={handleCancel}
             >
-              <p>
-                <Button type="primary" onClick={() => ChooseSound("piano")}>
-                  Piano
-                </Button>
-              </p>
-              <p>
-                <Button type="primary" onClick={() => ChooseSound("arp")}>
-                  Arp Synth
-                </Button>
-              </p>
-              <p>
-                <Button type="primary" onClick={() => ChooseSound("bang")}>
-                  Bang
-                </Button>
-              </p>
-              <p>
-                <Button type="primary" onClick={() => ChooseSound("kalimba")}>
-                  Kalimba
-                </Button>
-              </p>
+              <ChooseSoundFunction></ChooseSoundFunction>
             </Modal>
-            <SoundTwoTone
-              style={{
-                fontSize: "25px",
-                position: "absolute",
-                right: "0",
-                marginRight: "170px",
-                marginTop: "4px",
-              }}
-            />
+            <SoundTwoTone className="soundicon" />
             <Slider
-              style={{
-                width: "100px",
-                position: "absolute",
-                right: "0",
-                marginRight: "55px",
-              }}
+              className="slider-sound"
               trackStyle={{
                 backgroundColor: "blue",
               }}
@@ -215,18 +129,7 @@ function Piano() {
             </Row>
           </div>
         </Content>
-        <Footer
-          style={{
-            position: "sticky",
-            bottom: 0,
-            zIndex: 1,
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            backgroundColor: "#001529",
-            height: "64px",
-          }}
-        >
+        <Footer className="footer">
           <Tooltip title="Вниз" className="btnUp">
             <Button
               icon={<CaretDownOutlined />}
@@ -271,29 +174,6 @@ function keyColor(note: string): string {
   } else {
     return "gridWhite";
   }
-}
-
-function keyColor2(note: string): string {
-  if (note.includes("#")) {
-    return "btnPiano";
-  } else {
-    return "btnPianoWhite";
-  }
-}
-
-function backUp(): void {
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
-}
-function backDown(): void {
-  window.scrollTo({
-    top: document.body.scrollHeight,
-    left: 0,
-    behavior: "smooth",
-  });
 }
 
 Piano.propTypes = {
