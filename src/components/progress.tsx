@@ -7,7 +7,7 @@ const ProgressBar = () => {
   const [animationFrame, setAnimationFrame] = useState<number | null>(null);
 
   const moveComponent = () => {
-    setPosition((prevPosition = 0) => prevPosition + 1.05);
+    setPosition((prevPosition) => prevPosition + 1.05);
     setAnimationFrame(requestAnimationFrame(moveComponent));
   };
 

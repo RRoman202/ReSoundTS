@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import VolumeSlider from "./VolumeSoundControl";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { Sound } from "../../handlers/btnClickPianoRoll";
@@ -101,15 +102,7 @@ function Piano() {
               <ChooseSoundFunction></ChooseSoundFunction>
             </Modal>
             <SoundTwoTone className="soundicon" />
-            <Slider
-              className="slider-sound"
-              trackStyle={{
-                backgroundColor: "blue",
-              }}
-              railStyle={{
-                backgroundColor: "white",
-              }}
-            ></Slider>
+            <VolumeSlider></VolumeSlider>
           </div>
         </Header>
         <Content className="contentLayout">
@@ -120,6 +113,7 @@ function Piano() {
               }}
             >
               <Col className="pianoCol">{rows}</Col>
+
               <ProgressBar></ProgressBar>
               <GridCanvas
                 rows={notes.length}
