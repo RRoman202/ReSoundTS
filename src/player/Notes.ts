@@ -1,5 +1,3 @@
-import React from "react";
-
 function Getnotes(): string[] {
   const notes: string[] = [
     "B",

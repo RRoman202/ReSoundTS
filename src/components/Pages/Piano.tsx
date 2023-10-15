@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import VolumeSlider from "./VolumeSoundControl";
-import { useState } from "react";
+import ModalChooseSound from "./ModalChooseSound";
 import PropTypes from "prop-types";
-import { Sound } from "../../handlers/btnClickPianoRoll";
+import PianoTiles from "./PianoTiles";
+import Getnotes from "../../player/Notes";
 import { Button } from "antd";
 import "./Piano.css";
 import { url, filename } from "./chooseSound";
-import ChooseSoundFunction from "./chooseSound";
 import playSounds, { m } from "../../player/playCanvas";
 import { backDown, backUp } from "./scrollFunction";
-import Getnotes from "../../player/Notes";
 import "../../handlers/keyboardHandler";
 import ProgressBar from "../progress";
-import { Col, Row, Layout, Tooltip, Slider, Modal } from "antd";
+import { Row, Layout, Tooltip } from "antd";
 import {
   CaretUpOutlined,
   CaretRightOutlined,
@@ -23,8 +22,8 @@ import {
 import { GridCanvas } from "../Canvas/Canvas";
 import { SoundRemove } from "../../handlers/btnClickPianoRoll";
 import { BaseUrl } from "../../player/playSound";
-const notes = Getnotes();
 
+const notes = Getnotes();
 let isPlaying: boolean = false;
 const { Header, Content, Footer } = Layout;
 interface ProgressBarProps {
@@ -42,36 +41,6 @@ export const Prog: React.FC<ProgressBarProps> = ({
   return null;
 };
 function Piano() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
-  const rows: JSX.Element[] = [];
-  for (let i = 0; i < notes.length; i++) {
-    rows.push(
-      <Row key={i.toString()}>
-        <Button
-          className={"ant-btn-default " + keyColor(notes[i])}
-          onMouseDown={() => Sound(notes[i])}
-          onMouseUp={() => SoundRemove()}
-          onMouseLeave={() => SoundRemove()}
-        >
-          {notes[i]}
-        </Button>
-      </Row>
-    );
-  }
-
   return (
     <>
       <Layout className="layoutPiano">
@@ -84,23 +53,7 @@ function Piano() {
                 onClick={backUp}
               />
             </Tooltip>
-            <Button
-              type="primary"
-              className="choose-sound-button"
-              onClick={showModal}
-            >
-              Выбрать звук
-            </Button>
-            <Modal
-              title="Выбор звука"
-              open={isModalOpen}
-              okText="Ок"
-              cancelText="Отмена"
-              onOk={handleOk}
-              onCancel={handleCancel}
-            >
-              <ChooseSoundFunction></ChooseSoundFunction>
-            </Modal>
+            <ModalChooseSound></ModalChooseSound>
             <SoundTwoTone className="soundicon" />
             <VolumeSlider></VolumeSlider>
           </div>
@@ -112,8 +65,7 @@ function Piano() {
                 flexWrap: "nowrap",
               }}
             >
-              <Col className="pianoCol">{rows}</Col>
-
+              <PianoTiles></PianoTiles>
               <ProgressBar></ProgressBar>
               <GridCanvas
                 rows={notes.length}
@@ -160,14 +112,6 @@ function Piano() {
       <BaseUrl url={url} filename={filename}></BaseUrl>
     </>
   );
-}
-
-function keyColor(note: string): string {
-  if (note.includes("#")) {
-    return "gridBlack";
-  } else {
-    return "gridWhite";
-  }
 }
 
 Piano.propTypes = {

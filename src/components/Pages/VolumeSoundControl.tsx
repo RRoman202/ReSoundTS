@@ -4,8 +4,8 @@ import { VolumeValue } from "../../player/playSound";
 import "./Piano.css";
 
 const VolumeSlider = () => {
-  const [volume, setVolume] = useState(50);
-  const [volumeminus, setVolumeminus] = useState(50);
+  const [volume, setVolume] = useState(100);
+  const [volumeminus, setVolumeminus] = useState(0);
   const handleVolumeChange = (value: number) => {
     setVolume(value);
     setVolumeminus(value - 100);

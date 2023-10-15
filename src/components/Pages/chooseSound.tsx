@@ -34,6 +34,11 @@ function ChooseSoundFunction() {
         filename = "Kalimba_1.mp3";
         break;
       }
+      case "guitar_chord": {
+        url = "https://tonejs.github.io/audio/berklee/";
+        filename = "guitar_chord1.mp3";
+        break;
+      }
       default: {
         break;
       }
@@ -61,6 +66,11 @@ function ChooseSoundFunction() {
       <p>
         <Button type="primary" onClick={() => ChooseSound("kalimba")}>
           Kalimba
+        </Button>
+      </p>
+      <p>
+        <Button type="primary" onClick={() => ChooseSound("guitar_chord")}>
+          Guitar Chord
         </Button>
       </p>
     </>

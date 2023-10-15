@@ -1,4 +1,3 @@
-import React from "react";
 import { sampler } from "../player/playSound";
 import * as Tone from "tone";
 
