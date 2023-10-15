@@ -29,10 +29,32 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
   function drawCells() {
     const canvas = canvasRef.current;
     const ctx = canvas!.getContext("2d");
+
     if (ctx) {
       ctx.clearRect(0, 0, canvas!.width, canvas!.height);
       ctx.fillStyle = "#2D2E2E";
       ctx.fillRect(0, 0, canvas!.width, canvas!.height);
+      for (let row = 0; row < props.rows; row++) {
+        for (let col = 0; col < props.cols; col++) {
+          if (notes[row].includes("#")) {
+            ctx.fillStyle = "#2e3e48";
+            ctx.fillRect(
+              col * props.cellSize,
+              row * props.cellSize,
+              props.cellSize,
+              props.cellSize
+            );
+          } else {
+            ctx.fillStyle = "#34444e";
+            ctx.fillRect(
+              col * props.cellSize,
+              row * props.cellSize,
+              props.cellSize,
+              props.cellSize
+            );
+          }
+        }
+      }
       for (let row = 0; row < props.rows; row++) {
         for (let col = 0; col < props.cols; col++) {
           if (grid[row][col]) {
@@ -44,7 +66,7 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
               props.cellSize
             );
           }
-          ctx.strokeStyle = "#4B4D4D";
+          ctx.strokeStyle = "#293943";
           ctx.strokeRect(
             col * props.cellSize,
             row * props.cellSize,

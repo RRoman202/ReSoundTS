@@ -66,12 +66,15 @@ function Piano() {
               }}
             >
               <PianoTiles></PianoTiles>
-              <ProgressBar></ProgressBar>
-              <GridCanvas
-                rows={notes.length}
-                cols={34}
-                cellSize={40}
-              ></GridCanvas>
+
+              <div className="grid-canvas">
+                <ProgressBar></ProgressBar>
+                <GridCanvas
+                  rows={notes.length}
+                  cols={50}
+                  cellSize={40}
+                ></GridCanvas>
+              </div>
             </Row>
           </div>
         </Content>

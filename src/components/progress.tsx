@@ -37,14 +37,13 @@ const ProgressBar = () => {
     }
   }, [position]);
   return (
-    <div style={{ position: "relative", height: "200px" }}>
+    <div style={{ position: "relative" }}>
       <div
         style={{
           position: "absolute",
-          top: 0,
           left: position,
           width: "3px",
-          height: "3400px",
+          height: "3360px",
           backgroundColor: "blue",
           opacity: "0.5",
         }}
