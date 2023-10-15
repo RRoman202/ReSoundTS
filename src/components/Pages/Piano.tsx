@@ -22,7 +22,6 @@ import {
 import { GridCanvas } from "../Canvas/Canvas";
 import { SoundRemove } from "../../handlers/btnClickPianoRoll";
 import { BaseUrl } from "../../player/playSound";
-
 const notes = Getnotes();
 let isPlaying: boolean = false;
 const { Header, Content, Footer } = Layout;

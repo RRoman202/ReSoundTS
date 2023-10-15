@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Button } from "antd";
 import * as Tone from "tone";
 
@@ -39,13 +38,23 @@ function ChooseSoundFunction() {
         filename = "guitar_chord1.mp3";
         break;
       }
+      case "guitar_chord2": {
+        url = "https://tonejs.github.io/audio/berklee/";
+        filename = "guitar_chord2.mp3";
+        break;
+      }
+      case "guitar_chord3": {
+        url = "https://tonejs.github.io/audio/berklee/";
+        filename = "guitar_chord3.mp3";
+        break;
+      }
       default: {
         break;
       }
     }
     playExample(url, filename);
   };
-  useEffect(() => {}, [url]);
+
   return (
     <>
       <p>
@@ -71,6 +80,16 @@ function ChooseSoundFunction() {
       <p>
         <Button type="primary" onClick={() => ChooseSound("guitar_chord")}>
           Guitar Chord
+        </Button>
+      </p>
+      <p>
+        <Button type="primary" onClick={() => ChooseSound("guitar_chord2")}>
+          Guitar Chord 2
+        </Button>
+      </p>
+      <p>
+        <Button type="primary" onClick={() => ChooseSound("guitar_chord3")}>
+          Guitar Chord 3
         </Button>
       </p>
     </>
