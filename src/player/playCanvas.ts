@@ -1,5 +1,7 @@
 import GetNotes from "../player/Notes";
 import { Sound, SoundRemove } from "../handlers/btnClickPianoRoll";
+import { sampler } from "./playSound";
+import * as Tone from "tone";
 
 const notes: string[] = GetNotes();
 
@@ -20,13 +22,15 @@ function delay(time: number): Promise<void> {
 }
 
 async function playSounds(matrix: boolean[][], isPlaying: boolean) {
+  const now = Tone.now();
   if (!isPlaying) {
     const numRows: number = matrix.length;
     const numCols: number = matrix[0].length;
     for (let col = 0; col < numCols; col++) {
       for (let row = 0; row < numRows; row++) {
-        if (matrix[row][col] == true) {
-          Sound(notes[row]);
+        if (matrix[row][col]) {
+          sampler.triggerAttack(notes[row], now + col * 0.5);
+          sampler.triggerRelease(notes[row]);
           console.log(notes[row]);
         }
       }

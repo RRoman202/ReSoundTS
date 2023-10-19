@@ -12,6 +12,7 @@ import { backDown, backUp } from "./scrollFunction";
 import "../../handlers/keyboardHandler";
 import ProgressBar from "../progress";
 import { Row, Layout, Tooltip } from "antd";
+import ModalChooseEffects from "./ModalChooseEffects";
 import {
   CaretUpOutlined,
   CaretRightOutlined,
@@ -53,6 +54,7 @@ function Piano() {
               />
             </Tooltip>
             <ModalChooseSound></ModalChooseSound>
+            <ModalChooseEffects></ModalChooseEffects>
             <SoundTwoTone className="soundicon" />
             <VolumeSlider></VolumeSlider>
           </div>
@@ -65,7 +67,6 @@ function Piano() {
               }}
             >
               <PianoTiles></PianoTiles>
-
               <div className="grid-canvas">
                 <ProgressBar></ProgressBar>
                 <GridCanvas

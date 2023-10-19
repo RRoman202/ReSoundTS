@@ -92,7 +92,7 @@
   height: 64px;
 }
 .grid-canvas {
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 ::-webkit-scrollbar {
   /* 1 - скроллбар */

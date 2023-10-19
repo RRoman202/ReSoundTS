@@ -4,38 +4,32 @@ import { Prog } from "./Pages/Piano";
 const ProgressBar = () => {
   const [position, setPosition] = useState<number>(0);
   const [isMoving, setIsMoving] = useState<boolean>(false);
-  const [animationFrame, setAnimationFrame] = useState<number | null>(null);
 
   const moveComponent = () => {
-    setPosition((prevPosition) => prevPosition + 1.05);
-    setAnimationFrame(requestAnimationFrame(moveComponent));
+    setPosition((prevPosition) => prevPosition + 10);
   };
 
   const handleStartMoving = async () => {
     if (!isMoving) {
       setIsMoving(true);
+      console.log("start moving");
       setPosition(0);
-      setAnimationFrame(requestAnimationFrame(moveComponent));
     }
   };
 
   const stopMoving = () => {
     setIsMoving(false);
-    if (animationFrame) {
-      cancelAnimationFrame(animationFrame);
-      setAnimationFrame(null);
-    }
   };
 
   useEffect(() => {
-    if (position >= 5600) {
-      setIsMoving(false);
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-        setAnimationFrame(null);
-      }
+    if (isMoving) {
+      const intervalId = setInterval(() => {
+        moveComponent();
+        console.log(position);
+      }, 125);
+      return () => clearInterval(intervalId);
     }
-  }, [position]);
+  });
   return (
     <div style={{ position: "relative" }}>
       <div
