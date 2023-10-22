@@ -10,7 +10,7 @@ import { url, filename } from "./chooseSound";
 import playSounds, { m } from "../../player/playCanvas";
 import { backDown, backUp } from "./scrollFunction";
 import "../../handlers/keyboardHandler";
-import ProgressBar from "../progress";
+import ProgressBar from "../../player/playCanvas";
 import { Row, Layout, Tooltip } from "antd";
 import ModalChooseEffects from "./ModalChooseEffects";
 import {
@@ -54,7 +54,7 @@ function Piano() {
               />
             </Tooltip>
             <ModalChooseSound></ModalChooseSound>
-            <ModalChooseEffects></ModalChooseEffects>
+
             <SoundTwoTone className="soundicon" />
             <VolumeSlider></VolumeSlider>
           </div>
@@ -89,7 +89,6 @@ function Piano() {
           <div className="play-btn">
             <Button
               onClick={() => {
-                playSounds(m, isPlaying);
                 isPlaying = true;
 
                 startProgressBar();

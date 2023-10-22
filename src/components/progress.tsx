@@ -1,6 +1,20 @@
 import { useState, useEffect } from "react";
 import { Prog } from "./Pages/Piano";
 
+function delay(time: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+interface ProgressProps {
+  position: number;
+}
+export let positionn: number;
+export const ProgressPosition: React.FC<ProgressProps> = ({ position }) => {
+  positionn = { position }.position;
+  console.log(positionn);
+  return null;
+};
+
 const ProgressBar = () => {
   const [position, setPosition] = useState<number>(0);
   const [isMoving, setIsMoving] = useState<boolean>(false);
@@ -9,7 +23,7 @@ const ProgressBar = () => {
     setPosition((prevPosition) => prevPosition + 10);
   };
 
-  const handleStartMoving = async () => {
+  const handleStartMoving = () => {
     if (!isMoving) {
       setIsMoving(true);
       console.log("start moving");
@@ -22,13 +36,13 @@ const ProgressBar = () => {
   };
 
   useEffect(() => {
-    if (isMoving) {
-      const intervalId = setInterval(() => {
+    const progress = async () => {
+      if (isMoving) {
+        await delay(125);
         moveComponent();
-        console.log(position);
-      }, 125);
-      return () => clearInterval(intervalId);
-    }
+      }
+    };
+    progress();
   });
   return (
     <div style={{ position: "relative" }}>
