@@ -1,48 +1,21 @@
 import { useState, useEffect } from "react";
 import { Prog } from "./Pages/Piano";
+import { index } from "../player/playCanvas";
 
-function delay(time: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, time));
+interface PositionProps {
+  index: number;
 }
 
-interface ProgressProps {
-  position: number;
-}
-export let positionn: number;
-export const ProgressPosition: React.FC<ProgressProps> = ({ position }) => {
-  positionn = { position }.position;
-  console.log(positionn);
+export let position: number;
+export const GetPosition: React.FC<PositionProps> = ({ index }) => {
+  position = { index }.index;
+  console.log(position);
   return null;
 };
-
 const ProgressBar = () => {
-  const [position, setPosition] = useState<number>(0);
-  const [isMoving, setIsMoving] = useState<boolean>(false);
-
-  const moveComponent = () => {
-    setPosition((prevPosition) => prevPosition + 10);
-  };
-
-  const handleStartMoving = () => {
-    if (!isMoving) {
-      setIsMoving(true);
-      console.log("start moving");
-      setPosition(0);
-    }
-  };
-
-  const stopMoving = () => {
-    setIsMoving(false);
-  };
-
   useEffect(() => {
-    const progress = async () => {
-      if (isMoving) {
-        await delay(125);
-        moveComponent();
-      }
-    };
-    progress();
+    position = index;
+    console.log(position);
   });
   return (
     <div style={{ position: "relative" }}>
@@ -56,10 +29,6 @@ const ProgressBar = () => {
           opacity: "0.5",
         }}
       ></div>
-      <Prog
-        handleStartMoving={handleStartMoving}
-        stopMoving={stopMoving}
-      ></Prog>
     </div>
   );
 };

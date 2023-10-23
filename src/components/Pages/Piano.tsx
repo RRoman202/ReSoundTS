@@ -4,13 +4,13 @@ import ModalChooseSound from "./ModalChooseSound";
 import PropTypes from "prop-types";
 import PianoTiles from "./PianoTiles";
 import Getnotes from "../../player/Notes";
+import { index } from "../../player/playCanvas";
 import { Button } from "antd";
 import "./Piano.css";
 import { url, filename } from "./chooseSound";
-import playSounds, { m } from "../../player/playCanvas";
+import { play, stop } from "../../player/playCanvas";
 import { backDown, backUp } from "./scrollFunction";
 import "../../handlers/keyboardHandler";
-import ProgressBar from "../../player/playCanvas";
 import { Row, Layout, Tooltip } from "antd";
 import ModalChooseEffects from "./ModalChooseEffects";
 import {
@@ -19,6 +19,7 @@ import {
   CaretDownOutlined,
   SoundTwoTone,
   PauseCircleFilled,
+  BorderOutlined,
 } from "@ant-design/icons";
 import { GridCanvas } from "../Canvas/Canvas";
 import { SoundRemove } from "../../handlers/btnClickPianoRoll";
@@ -67,8 +68,8 @@ function Piano() {
               }}
             >
               <PianoTiles></PianoTiles>
+
               <div className="grid-canvas">
-                <ProgressBar></ProgressBar>
                 <GridCanvas
                   rows={notes.length}
                   cols={50}
@@ -89,9 +90,8 @@ function Piano() {
           <div className="play-btn">
             <Button
               onClick={() => {
-                isPlaying = true;
-
-                startProgressBar();
+                console.log(index);
+                play();
               }}
               type="primary"
               shape="circle"
@@ -100,13 +100,11 @@ function Piano() {
             ></Button>
             <Button
               onClick={() => {
-                stopMovingBar();
-                SoundRemove();
-                isPlaying = false;
+                stop();
               }}
               type="primary"
               shape="circle"
-              icon={<PauseCircleFilled />}
+              icon={<BorderOutlined />}
             ></Button>
           </div>
         </Footer>
