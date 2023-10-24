@@ -24,7 +24,6 @@ export const BaseUrl: React.FC<baseUrlProps> = ({ url, filename }) => {
   const urlbase = { url }.url;
   const filenamebase = { filename }.filename;
 
-  console.log(urlbase);
   newsampler(urlbase, filenamebase);
 
   return null;

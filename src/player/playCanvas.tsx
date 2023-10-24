@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { sampler } from "./playSound";
 import * as Tone from "tone";
 import { Prog } from "../components/Pages/Piano";
+import "../components/Pages/Piano.css";
 
 const notes: string[] = GetNotes();
 
@@ -13,6 +14,16 @@ interface MatrixProps {
 export let m: boolean[][];
 export const Matrix: React.FC<MatrixProps> = ({ grid }) => {
   m = { grid }.grid;
+  return null;
+};
+function newbpm(bpmvalue: number) {
+  Tone.Transport.bpm.value = bpmvalue;
+}
+interface bpmProps {
+  bpmvalue: number;
+}
+export const BpmValue: React.FC<bpmProps> = ({ bpmvalue }) => {
+  newbpm({ bpmvalue }.bpmvalue);
   return null;
 };
 export const PlayCanv: React.FC = () => {
@@ -38,9 +49,7 @@ export const PlayCanv: React.FC = () => {
 
   function playNote() {
     const notesp = notesplay[index];
-    console.log(notesp);
     for (let n = 0; n < notesp.length; n++) {
-      console.log(notesp[n]);
       sampler.triggerAttackRelease(notesp[n], "8n");
     }
     GetNotesPlay();
@@ -53,14 +62,22 @@ export const PlayCanv: React.FC = () => {
 
       GetNotesPlay();
       Tone.Transport.scheduleRepeat(playNote, "8n");
+
       Tone.Transport.start();
     }
   }
   function stop() {
     isPlaying = false;
     index = 0;
+    setPosition(index);
     Tone.Transport.cancel();
     Tone.Transport.stop();
+  }
+  function pause() {
+    isPlaying = false;
+    index = position;
+    Tone.Transport.cancel();
+    Tone.Transport.pause();
   }
   return (
     <>
@@ -77,7 +94,11 @@ export const PlayCanv: React.FC = () => {
           }}
         ></div>
       </div>
-      <Prog handleStartMoving={play} stopMoving={stop}></Prog>
+      <Prog
+        handleStartMoving={play}
+        stopMoving={stop}
+        pauseMoving={pause}
+      ></Prog>
     </>
   );
 };

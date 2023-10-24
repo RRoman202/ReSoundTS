@@ -1,6 +1,7 @@
 import React from "react";
 import VolumeSlider from "./VolumeSoundControl";
 import ModalChooseSound from "./ModalChooseSound";
+import BpmInput from "./chooseBPM";
 import PropTypes from "prop-types";
 import PianoTiles from "./PianoTiles";
 import Getnotes from "../../player/Notes";
@@ -17,23 +18,29 @@ import {
   CaretDownOutlined,
   SoundTwoTone,
   BorderOutlined,
+  PauseCircleOutlined,
 } from "@ant-design/icons";
 import { GridCanvas } from "../Canvas/Canvas";
 import { BaseUrl } from "../../player/playSound";
 const notes = Getnotes();
+let isPlaying = false;
 const { Header, Content, Footer } = Layout;
 interface ProgressBarProps {
   handleStartMoving: () => void;
   stopMoving: () => void;
+  pauseMoving: () => void;
 }
 let startProgressBar: () => void;
 let stopMovingBar: () => void;
+let pauseMovingBar: () => void;
 export const Prog: React.FC<ProgressBarProps> = ({
   handleStartMoving,
   stopMoving,
+  pauseMoving,
 }) => {
   startProgressBar = { handleStartMoving }.handleStartMoving;
   stopMovingBar = { stopMoving }.stopMoving;
+  pauseMovingBar = { pauseMoving }.pauseMoving;
   return null;
 };
 function Piano() {
@@ -50,7 +57,7 @@ function Piano() {
               />
             </Tooltip>
             <ModalChooseSound></ModalChooseSound>
-
+            <BpmInput></BpmInput>
             <SoundTwoTone className="soundicon" />
             <VolumeSlider></VolumeSlider>
           </div>
@@ -85,7 +92,20 @@ function Piano() {
           <div className="play-btn">
             <Button
               onClick={() => {
-                startProgressBar();
+                isPlaying = false;
+                pauseMovingBar();
+              }}
+              type="primary"
+              shape="circle"
+              className="pause-button"
+              icon={<PauseCircleOutlined />}
+            ></Button>
+            <Button
+              onClick={() => {
+                if (!isPlaying) {
+                  isPlaying = true;
+                  startProgressBar();
+                }
               }}
               type="primary"
               shape="circle"
@@ -94,6 +114,7 @@ function Piano() {
             ></Button>
             <Button
               onClick={() => {
+                isPlaying = false;
                 stopMovingBar();
               }}
               type="primary"
