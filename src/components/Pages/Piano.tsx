@@ -4,28 +4,23 @@ import ModalChooseSound from "./ModalChooseSound";
 import PropTypes from "prop-types";
 import PianoTiles from "./PianoTiles";
 import Getnotes from "../../player/Notes";
-import { index } from "../../player/playCanvas";
+import { PlayCanv } from "../../player/playCanvas";
 import { Button } from "antd";
 import "./Piano.css";
 import { url, filename } from "./chooseSound";
-import { play, stop } from "../../player/playCanvas";
 import { backDown, backUp } from "./scrollFunction";
 import "../../handlers/keyboardHandler";
 import { Row, Layout, Tooltip } from "antd";
-import ModalChooseEffects from "./ModalChooseEffects";
 import {
   CaretUpOutlined,
   CaretRightOutlined,
   CaretDownOutlined,
   SoundTwoTone,
-  PauseCircleFilled,
   BorderOutlined,
 } from "@ant-design/icons";
 import { GridCanvas } from "../Canvas/Canvas";
-import { SoundRemove } from "../../handlers/btnClickPianoRoll";
 import { BaseUrl } from "../../player/playSound";
 const notes = Getnotes();
-let isPlaying: boolean = false;
 const { Header, Content, Footer } = Layout;
 interface ProgressBarProps {
   handleStartMoving: () => void;
@@ -68,7 +63,7 @@ function Piano() {
               }}
             >
               <PianoTiles></PianoTiles>
-
+              <PlayCanv></PlayCanv>
               <div className="grid-canvas">
                 <GridCanvas
                   rows={notes.length}
@@ -90,8 +85,7 @@ function Piano() {
           <div className="play-btn">
             <Button
               onClick={() => {
-                console.log(index);
-                play();
+                startProgressBar();
               }}
               type="primary"
               shape="circle"
@@ -100,7 +94,7 @@ function Piano() {
             ></Button>
             <Button
               onClick={() => {
-                stop();
+                stopMovingBar();
               }}
               type="primary"
               shape="circle"
