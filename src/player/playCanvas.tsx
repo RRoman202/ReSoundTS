@@ -1,5 +1,5 @@
 import GetNotes from "../player/Notes";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { sampler } from "./playSound";
 import * as Tone from "tone";
 import { Prog } from "../components/Pages/Piano";
