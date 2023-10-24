@@ -127,9 +127,6 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
         }}
         onMouseMove={handleMouseMove}
         onMouseUp={(e) => {
-          const rect = canvasRef.current!.getBoundingClientRect();
-          const x = Math.floor((e.clientX - rect.left) / props.cellSize);
-          const y = Math.floor((e.clientY - rect.top) / props.cellSize);
           SoundRemove();
           handleMouseUp();
         }}

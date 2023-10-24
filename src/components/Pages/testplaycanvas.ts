@@ -1,6 +1,5 @@
 import * as Tone from "tone";
 import { sampler } from "../../player/playSound";
-const now = Tone.now();
 
 const notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4"];
 

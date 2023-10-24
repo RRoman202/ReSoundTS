@@ -19,6 +19,7 @@ export const PlayCanv: React.FC = () => {
   let index = 0;
   let notesplay: { [key: number]: string[] } = {};
   const [position, setPosition] = useState<number>(0);
+
   let isPlaying: boolean = false;
   function GetNotesPlay() {
     const matrix = m;
@@ -49,6 +50,7 @@ export const PlayCanv: React.FC = () => {
   function play() {
     if (!isPlaying) {
       isPlaying = true;
+
       GetNotesPlay();
       Tone.Transport.scheduleRepeat(playNote, "8n");
       Tone.Transport.start();
@@ -67,6 +69,7 @@ export const PlayCanv: React.FC = () => {
           style={{
             position: "absolute",
             left: (position - 1) * 40 + "px",
+            visibility: "visible",
             width: "3px",
             height: "3360px",
             backgroundColor: "blue",
