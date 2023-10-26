@@ -89,8 +89,7 @@ export const PlayCanv: React.FC = () => {
             visibility: "visible",
             width: "3px",
             height: "3360px",
-            backgroundColor: "blue",
-            opacity: "0.5",
+            backgroundColor: "orange",
           }}
         ></div>
       </div>

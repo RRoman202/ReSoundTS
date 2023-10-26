@@ -95,6 +95,8 @@
 }
 .grid-canvas {
   overflow-x: auto;
+  display: flex;
+  flex-direction: row;
 }
 ::-webkit-scrollbar {
   /* 1 - скроллбар */
@@ -112,4 +114,10 @@
 }
 .pause-button {
   margin-right: 10px;
+}
+.slider-panner {
+  margin-left: 20px;
+  width: 200%;
+}
+.panner-div {
 }

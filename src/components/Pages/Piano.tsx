@@ -3,9 +3,12 @@ import VolumeSlider from "./VolumeSoundControl";
 import ModalChooseSound from "./ModalChooseSound";
 import BpmInput from "./chooseBPM";
 import PropTypes from "prop-types";
+import PannerSlider from "./PannerControl";
 import PianoTiles from "./PianoTiles";
+import { observer } from "mobx-react";
 import Getnotes from "../../player/Notes";
 import { PlayCanv } from "../../player/playCanvas";
+import generatingCanvas from "./generatingCanvas";
 import { Button } from "antd";
 import "./Piano.css";
 import { url, filename } from "./chooseSound";
@@ -43,7 +46,7 @@ export const Prog: React.FC<ProgressBarProps> = ({
   pauseMovingBar = { pauseMoving }.pauseMoving;
   return null;
 };
-function Piano() {
+const Piano = observer(() => {
   return (
     <>
       <Layout className="layoutPiano">
@@ -58,6 +61,7 @@ function Piano() {
             </Tooltip>
             <ModalChooseSound></ModalChooseSound>
             <BpmInput></BpmInput>
+            <PannerSlider></PannerSlider>
             <SoundTwoTone className="soundicon" />
             <VolumeSlider></VolumeSlider>
           </div>
@@ -127,10 +131,6 @@ function Piano() {
       <BaseUrl url={url} filename={filename}></BaseUrl>
     </>
   );
-}
-
-Piano.propTypes = {
-  window: PropTypes.func,
-};
+});
 
 export default Piano;
