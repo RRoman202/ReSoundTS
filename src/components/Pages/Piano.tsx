@@ -3,12 +3,15 @@ import VolumeSlider from "./VolumeSoundControl";
 import ModalChooseSound from "./ModalChooseSound";
 import BpmInput from "./chooseBPM";
 import PropTypes from "prop-types";
+import { RecordCanvas } from "./SaveAudio";
+import "./SaveAudio";
 import PannerSlider from "./PannerControl";
 import PianoTiles from "./PianoTiles";
 import { observer } from "mobx-react";
 import Getnotes from "../../player/Notes";
 import { PlayCanv } from "../../player/playCanvas";
 import generatingCanvas from "./generatingCanvas";
+import "./SaveAudio";
 import { Button } from "antd";
 import "./Piano.css";
 import { url, filename } from "./chooseSound";
@@ -61,6 +64,13 @@ const Piano = observer(() => {
             </Tooltip>
             <ModalChooseSound></ModalChooseSound>
             <BpmInput></BpmInput>
+            <Button
+              onClick={RecordCanvas}
+              type="primary"
+              className="record-button"
+            >
+              Записать в mp3
+            </Button>
             <PannerSlider></PannerSlider>
             <SoundTwoTone className="soundicon" />
             <VolumeSlider></VolumeSlider>

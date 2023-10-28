@@ -26,7 +26,10 @@ export const BpmValue: React.FC<bpmProps> = ({ bpmvalue }) => {
   newbpm({ bpmvalue }.bpmvalue);
   return null;
 };
+
 export const PlayCanv: React.FC = () => {
+  const recorder = new Tone.Recorder();
+  sampler.connect(recorder);
   let index = 0;
   let notesplay: { [key: number]: string[] } = {};
   const [position, setPosition] = useState<number>(0);
@@ -49,28 +52,31 @@ export const PlayCanv: React.FC = () => {
 
   function playNote() {
     const notesp = notesplay[index];
+
     for (let n = 0; n < notesp.length; n++) {
       sampler.triggerAttackRelease(notesp[n], "8n");
     }
     GetNotesPlay();
+
     index = (index + 1) % m[0].length;
     setPosition(index);
   }
   function play() {
     if (!isPlaying) {
       isPlaying = true;
-
       GetNotesPlay();
-      Tone.Transport.scheduleRepeat(playNote, "8n");
 
+      Tone.Transport.scheduleRepeat(playNote, "8n");
       Tone.Transport.start();
     }
   }
-  function stop() {
+  async function stop() {
     isPlaying = false;
+
     index = 0;
     setPosition(index);
     Tone.Transport.cancel();
+
     Tone.Transport.stop();
   }
   function pause() {
@@ -79,6 +85,7 @@ export const PlayCanv: React.FC = () => {
     Tone.Transport.cancel();
     Tone.Transport.pause();
   }
+
   return (
     <>
       <div style={{ position: "relative" }}>
@@ -93,6 +100,7 @@ export const PlayCanv: React.FC = () => {
           }}
         ></div>
       </div>
+
       <Prog
         handleStartMoving={play}
         stopMoving={stop}
