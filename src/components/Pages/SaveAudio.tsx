@@ -45,6 +45,7 @@ export function RecordCanvas() {
 
     let blob = new Blob([recording], { type: "audio/ogg; codecs=opus" });
     const url = URL.createObjectURL(blob);
+
     const anchor = document.createElement("a");
     anchor.download = "recording.ogg";
     anchor.href = url;

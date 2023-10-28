@@ -98,6 +98,7 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
         newGrid[y][x] = true;
         newGrid[draggedCell.row][draggedCell.col] = false;
         Sound(notes[y]);
+        SoundRemove();
         setGrid(newGrid);
         setDraggedCell({ row: y, col: x });
         drawCells();
