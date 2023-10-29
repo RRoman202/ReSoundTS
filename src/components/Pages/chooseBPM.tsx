@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { InputNumber } from "antd";
 import { BpmValue } from "../../player/playCanvas";
+import "../../components/Pages/Piano.css";
 
 const BpmInput = () => {
   const [bpm, setBpm] = useState<number>(120);
@@ -18,6 +19,7 @@ const BpmInput = () => {
         defaultValue={120}
         step="0.001"
         onChange={handleBpmChange}
+        addonAfter="BPM"
       />
       <BpmValue bpmvalue={bpm}></BpmValue>
     </>

@@ -22,6 +22,7 @@
 }
 .pianoCol {
   background-color: #26252d;
+  margin-top: 15px;
 }
 .selectSound {
   margin-left: 80px;
@@ -123,4 +124,13 @@
 }
 .record-button {
   margin-left: 20px;
+}
+.signature {
+  border-radius: 5px;
+  background-color: #1677ff;
+  height: 15px;
+}
+.bpm-input .ant-input-number-group-addon {
+  color: white;
+  background-color: #1677ff;
 }

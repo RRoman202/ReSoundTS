@@ -3,6 +3,7 @@ import VolumeSlider from "./VolumeSoundControl";
 import ModalChooseSound from "./ModalChooseSound";
 import BpmInput from "./chooseBPM";
 import PropTypes from "prop-types";
+import CanvasTimeSignature from "./TimeSignatureBar";
 import { RecordCanvas } from "./SaveAudio";
 import "./SaveAudio";
 import PannerSlider from "./PannerControl";
@@ -69,9 +70,8 @@ const Piano = observer(() => {
               type="primary"
               className="record-button"
             >
-              Записать в mp3
+              Записать
             </Button>
-            <PannerSlider></PannerSlider>
             <SoundTwoTone className="soundicon" />
             <VolumeSlider></VolumeSlider>
           </div>
@@ -84,13 +84,21 @@ const Piano = observer(() => {
               }}
             >
               <PianoTiles></PianoTiles>
-              <PlayCanv></PlayCanv>
+
               <div className="grid-canvas">
-                <GridCanvas
-                  rows={notes.length}
-                  cols={50}
-                  cellSize={40}
-                ></GridCanvas>
+                <PlayCanv></PlayCanv>
+                <div>
+                  <CanvasTimeSignature
+                    width={2000}
+                    height={20}
+                    spacing={160}
+                  ></CanvasTimeSignature>
+                  <GridCanvas
+                    rows={notes.length}
+                    cols={50}
+                    cellSize={40}
+                  ></GridCanvas>
+                </div>
               </div>
             </Row>
           </div>
