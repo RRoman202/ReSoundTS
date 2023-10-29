@@ -1,6 +1,6 @@
 import * as Tone from "tone";
 import { sampler } from "../../player/playSound";
-import { Modal } from "antd";
+
 import { m } from "../../player/playCanvas";
 import GetNotes from "../../player/Notes";
 export function RecordCanvas() {

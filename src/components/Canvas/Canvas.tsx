@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import Getnotes from "../../player/Notes";
 import { Sound, SoundRemove } from "../../handlers/btnClickPianoRoll";
 import { Matrix } from "../../player/playCanvas";
+import { Canv } from "./ClearCanvasBtn";
+import { Button } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 
 interface GridCanvasProps {
   rows: number;
@@ -25,7 +28,14 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
     row: number;
     col: number;
   } | null>(null);
-
+  function ClearCanvas() {
+    setGrid(
+      Array.from({ length: props.rows }, () =>
+        Array.from({ length: props.cols }, () => false)
+      )
+    );
+    console.log(grid);
+  }
   function drawCells() {
     const canvas = canvasRef.current;
     const ctx = canvas!.getContext("2d");
@@ -132,6 +142,13 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
           handleMouseUp();
         }}
       />
+      <Canv ClearCanvass={ClearCanvas}></Canv>
+      <Button
+        type="primary"
+        shape="circle"
+        icon={<DeleteOutlined />}
+        onClick={ClearCanvas}
+      ></Button>
       <Matrix grid={grid}></Matrix>
     </div>
   );

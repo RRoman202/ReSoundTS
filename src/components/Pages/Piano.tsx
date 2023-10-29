@@ -2,16 +2,14 @@ import React from "react";
 import VolumeSlider from "./VolumeSoundControl";
 import ModalChooseSound from "./ModalChooseSound";
 import BpmInput from "./chooseBPM";
-import PropTypes from "prop-types";
 import CanvasTimeSignature from "./TimeSignatureBar";
 import { RecordCanvas } from "./SaveAudio";
 import "./SaveAudio";
-import PannerSlider from "./PannerControl";
+import { ClearCanv } from "../Canvas/ClearCanvasBtn";
 import PianoTiles from "./PianoTiles";
 import { observer } from "mobx-react";
 import Getnotes from "../../player/Notes";
 import { PlayCanv } from "../../player/playCanvas";
-import generatingCanvas from "./generatingCanvas";
 import "./SaveAudio";
 import { Button } from "antd";
 import "./Piano.css";
@@ -26,6 +24,7 @@ import {
   SoundTwoTone,
   BorderOutlined,
   PauseCircleOutlined,
+  DeleteOutlined,
 } from "@ant-design/icons";
 import { GridCanvas } from "../Canvas/Canvas";
 import { BaseUrl } from "../../player/playSound";
@@ -37,6 +36,7 @@ interface ProgressBarProps {
   stopMoving: () => void;
   pauseMoving: () => void;
 }
+
 let startProgressBar: () => void;
 let stopMovingBar: () => void;
 let pauseMovingBar: () => void;
@@ -72,6 +72,7 @@ const Piano = observer(() => {
             >
               Записать
             </Button>
+
             <SoundTwoTone className="soundicon" />
             <VolumeSlider></VolumeSlider>
           </div>
