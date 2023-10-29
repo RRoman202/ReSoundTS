@@ -23,13 +23,13 @@ const CanvasTimeSignature: React.FC<CanvasProps> = ({
         context.clearRect(0, 0, width, height);
 
         let x = spacing;
-        const y = height / 2; // фиксированное значение для y
+        const y = height / 2;
         let num = 1;
 
         context.fillStyle = "white";
-        while (x < width - spacing) {
-          // измененная логика цикла
-          context.fillText(num.toString(), x, y);
+        while (x < width - spacing + 300) {
+          context.fillText(num.toString(), x - 155, y);
+          context.fillRect(x, y, 1, 30);
           num++;
           x += spacing;
         }

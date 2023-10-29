@@ -112,37 +112,43 @@ const Piano = observer(() => {
             />
           </Tooltip>
           <div className="play-btn">
-            <Button
-              onClick={() => {
-                isPlaying = false;
-                pauseMovingBar();
-              }}
-              type="primary"
-              shape="circle"
-              className="pause-button"
-              icon={<PauseCircleOutlined />}
-            ></Button>
-            <Button
-              onClick={() => {
-                if (!isPlaying) {
-                  isPlaying = true;
-                  startProgressBar();
-                }
-              }}
-              type="primary"
-              shape="circle"
-              className="play-button"
-              icon={<CaretRightOutlined />}
-            ></Button>
-            <Button
-              onClick={() => {
-                isPlaying = false;
-                stopMovingBar();
-              }}
-              type="primary"
-              shape="circle"
-              icon={<BorderOutlined />}
-            ></Button>
+            <Tooltip title="Pause">
+              <Button
+                onClick={() => {
+                  isPlaying = false;
+                  pauseMovingBar();
+                }}
+                type="primary"
+                shape="circle"
+                className="pause-button"
+                icon={<PauseCircleOutlined />}
+              ></Button>
+            </Tooltip>
+            <Tooltip title="Play">
+              <Button
+                onClick={() => {
+                  if (!isPlaying) {
+                    isPlaying = true;
+                    startProgressBar();
+                  }
+                }}
+                type="primary"
+                shape="circle"
+                className="play-button"
+                icon={<CaretRightOutlined />}
+              ></Button>
+            </Tooltip>
+            <Tooltip title="Stop">
+              <Button
+                onClick={() => {
+                  isPlaying = false;
+                  stopMovingBar();
+                }}
+                type="primary"
+                shape="circle"
+                icon={<BorderOutlined />}
+              ></Button>
+            </Tooltip>
           </div>
         </Footer>
       </Layout>
