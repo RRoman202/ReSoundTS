@@ -39,7 +39,7 @@ const CanvasTimeSignature: React.FC<CanvasProps> = ({
 
   return (
     <div className="signature">
-      <canvas ref={canvasRef} width={width} height={height} />;
+      <canvas ref={canvasRef} width={width} height={height} />
     </div>
   );
 };

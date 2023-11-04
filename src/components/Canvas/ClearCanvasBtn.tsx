@@ -7,7 +7,6 @@ interface ClearCanvasProps {
 let ClearCanvasAll: () => void;
 export const Canv: React.FC<ClearCanvasProps> = ({ ClearCanvass }) => {
   ClearCanvasAll = { ClearCanvass }.ClearCanvass;
-  console.log(ClearCanvasAll);
   return null;
 };
 export const ClearCanv = () => {

@@ -49,8 +49,18 @@ export const PlayCanv: React.FC = () => {
       notesplay[col] = colnotes;
     }
   }
+  function checkNotesPlay() {
+    let lastNonEmptyListKey = 0;
+    for (const key in notesplay) {
+      if (notesplay[key].length > 0) {
+        lastNonEmptyListKey = Number(key);
+      }
+    }
 
+    return Math.ceil(lastNonEmptyListKey / 4 + 0.25) * 4;
+  }
   function playNote() {
+    checkNotesPlay();
     const notesp = notesplay[index];
 
     for (let n = 0; n < notesp.length; n++) {
@@ -58,7 +68,7 @@ export const PlayCanv: React.FC = () => {
     }
     GetNotesPlay();
 
-    index = (index + 1) % m[0].length;
+    index = (index + 1) % checkNotesPlay();
     setPosition(index);
   }
   function play() {
