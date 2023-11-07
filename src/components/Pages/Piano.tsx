@@ -90,13 +90,13 @@ const Piano = observer(() => {
                 <PlayCanv></PlayCanv>
                 <div>
                   <CanvasTimeSignature
-                    width={2000}
+                    width={1920}
                     height={20}
                     spacing={160}
                   ></CanvasTimeSignature>
                   <GridCanvas
                     rows={notes.length}
-                    cols={50}
+                    cols={48}
                     cellSize={40}
                   ></GridCanvas>
                 </div>
