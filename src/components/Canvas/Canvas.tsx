@@ -5,6 +5,7 @@ import { Matrix } from "../../player/playCanvas";
 import { Canv } from "./ClearCanvasBtn";
 import { Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
+import findNote from "./TextNoteCanvas";
 
 interface GridCanvasProps {
   rows: number;
@@ -75,6 +76,13 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
               props.cellSize,
               props.cellSize
             );
+            ctx.fillStyle = "black";
+
+            ctx.fillText(
+              findNote(row),
+              col * props.cellSize + 2,
+              row * props.cellSize + 10
+            );
           }
           ctx.strokeStyle = "#293943";
           ctx.strokeRect(
@@ -143,12 +151,7 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
         }}
       />
       <Canv ClearCanvass={ClearCanvas}></Canv>
-      <Button
-        type="primary"
-        shape="circle"
-        icon={<DeleteOutlined />}
-        onClick={ClearCanvas}
-      ></Button>
+
       <Matrix grid={grid}></Matrix>
     </div>
   );

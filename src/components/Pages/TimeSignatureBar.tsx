@@ -16,6 +16,7 @@ const CanvasTimeSignature: React.FC<CanvasProps> = ({
 
   useEffect(() => {
     const canvas = canvasRef.current;
+
     if (canvas) {
       const context = canvas.getContext("2d");
 

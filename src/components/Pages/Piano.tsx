@@ -3,9 +3,9 @@ import VolumeSlider from "./VolumeSoundControl";
 import ModalChooseSound from "./ModalChooseSound";
 import BpmInput from "./chooseBPM";
 import CanvasTimeSignature from "./TimeSignatureBar";
+import { ClearCanv } from "../Canvas/ClearCanvasBtn";
 import { RecordCanvas } from "./SaveAudio";
 import "./SaveAudio";
-import { ClearCanv } from "../Canvas/ClearCanvasBtn";
 import PianoTiles from "./PianoTiles";
 import { observer } from "mobx-react";
 import Getnotes from "../../player/Notes";
@@ -72,6 +72,15 @@ const Piano = observer(() => {
             >
               Записать
             </Button>
+            <Tooltip title="Очистить">
+              <Button
+                className="delete-button"
+                type="primary"
+                shape="circle"
+                icon={<DeleteOutlined />}
+                onClick={ClearCanv}
+              ></Button>
+            </Tooltip>
 
             <SoundTwoTone className="soundicon" />
             <VolumeSlider></VolumeSlider>
