@@ -8,10 +8,10 @@ export default function NavBar() {
       <div className="nav-menu">
         <p className="name">ReSound</p>
         <div className="divMenu">
-          <NavLink to="ReSoundTS/home" className="navbar-link">
+          <NavLink to="/home" className="navbar-link">
             Главная
           </NavLink>
-          <NavLink to="ReSoundTS/piano" className="navbar-link">
+          <NavLink to="/piano" className="navbar-link">
             Пианинко
           </NavLink>
         </div>
