@@ -33,7 +33,6 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
         Array.from({ length: props.cols }, () => false)
       )
     );
-    console.log(grid);
   }
 
   function drawCells() {
