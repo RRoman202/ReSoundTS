@@ -86,7 +86,7 @@ const Piano = observer(() => {
             <VolumeSlider></VolumeSlider>
           </div>
         </Header>
-        <Content className="contentLayout">
+        <Content id="contentLayout" className="contentLayout">
           <div className="pianoDiv">
             <Row
               style={{
@@ -122,7 +122,7 @@ const Piano = observer(() => {
             />
           </Tooltip>
           <div className="play-btn">
-            <Tooltip title="Pause">
+            <Tooltip title="Пауза">
               <Button
                 onClick={() => {
                   isPlaying = false;
@@ -134,7 +134,7 @@ const Piano = observer(() => {
                 icon={<PauseCircleOutlined />}
               ></Button>
             </Tooltip>
-            <Tooltip title="Play">
+            <Tooltip title="Пуск">
               <Button
                 onClick={() => {
                   if (!isPlaying) {
@@ -148,7 +148,7 @@ const Piano = observer(() => {
                 icon={<CaretRightOutlined />}
               ></Button>
             </Tooltip>
-            <Tooltip title="Stop">
+            <Tooltip title="Стоп">
               <Button
                 onClick={() => {
                   isPlaying = false;

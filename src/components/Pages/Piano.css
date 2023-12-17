@@ -49,6 +49,7 @@
 }
 .layoutPiano {
   background-color: #26252d;
+  height: 100vh;
 }
 .play-btn {
   margin: 0 auto;
@@ -99,6 +100,13 @@
   display: flex;
   flex-direction: row;
 }
+
+body::-webkit-scrollbar {
+  /* 1 - скроллбар */
+  width: 0px;
+
+  background-color: #2c3531;
+}
 ::-webkit-scrollbar {
   /* 1 - скроллбар */
   width: 15px;
@@ -120,8 +128,7 @@
   margin-left: 20px;
   width: 200%;
 }
-.panner-div {
-}
+
 .record-button {
   margin-left: 20px;
 }
@@ -136,4 +143,7 @@
 }
 .delete-button {
   margin-left: 75px;
+}
+.contentLayout {
+  overflow: auto;
 }

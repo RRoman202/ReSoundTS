@@ -17,7 +17,9 @@ export default function NavBar() {
         </div>
       </div>
       <div className="nav-btn">
-        <Button type="primary">Войти</Button>
+        <Button type="primary" className="auth-btn">
+          Войти
+        </Button>
       </div>
     </nav>
   );
