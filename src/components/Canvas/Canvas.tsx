@@ -3,8 +3,6 @@ import Getnotes from "../../player/Notes";
 import { Sound, SoundRemove } from "../../handlers/btnClickPianoRoll";
 import { Matrix } from "../../player/playCanvas";
 import { Canv } from "./ClearCanvasBtn";
-import { Button } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
 import findNote from "./TextNoteCanvas";
 
 interface GridCanvasProps {
@@ -37,6 +35,7 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
     );
     console.log(grid);
   }
+
   function drawCells() {
     const canvas = canvasRef.current;
     const ctx = canvas!.getContext("2d");
@@ -77,7 +76,9 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
               props.cellSize
             );
             ctx.fillStyle = "black";
-
+            //@ts-ignore
+            ctx.textRendering = "geometricPrecision";
+            ctx.imageSmoothingEnabled = false;
             ctx.fillText(
               findNote(row),
               col * props.cellSize + 2,

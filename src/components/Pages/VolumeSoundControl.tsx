@@ -15,8 +15,8 @@ const VolumeSlider = () => {
     <div>
       <Slider
         className="slider-sound"
-        trackStyle={{ backgroundColor: "white" }}
-        railStyle={{ backgroundColor: "blue" }}
+        trackStyle={{ backgroundColor: "blue" }}
+        railStyle={{ backgroundColor: "white" }}
         value={volume}
         onChange={handleVolumeChange}
       />
