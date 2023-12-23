@@ -105,7 +105,7 @@ export const PlayCanv: React.FC = () => {
             left: (position - 1) * 40 + "px",
             visibility: "visible",
             width: "3px",
-            height: "3375px",
+            height: "3360px",
             backgroundColor: "orange",
           }}
         ></div>
