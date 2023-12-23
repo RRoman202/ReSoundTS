@@ -136,6 +136,9 @@ body::-webkit-scrollbar {
   border-radius: 5px;
   background-color: #1677ff;
   height: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 .bpm-input .ant-input-number-group-addon {
   color: white;

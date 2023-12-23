@@ -1,6 +1,6 @@
-import Getnotes from "../../player/Notes";
+import Getnotes from "../../../player/Notes";
 import { Row, Button, Col } from "antd";
-import { Sound, SoundRemove } from "../../handlers/btnClickPianoRoll";
+import { Sound, SoundRemove } from "../../../handlers/btnClickPianoRoll";
 const notes = Getnotes();
 
 export default function PianoTiles() {

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { InputNumber } from "antd";
-import { BpmValue } from "../../player/playCanvas";
-import "../../components/Pages/Piano.css";
+import { BpmValue } from "../../../player/playCanvas";
 
 const BpmInput = () => {
   const [bpm, setBpm] = useState<number>(120);

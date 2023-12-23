@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Slider } from "antd";
-import { VolumeValue } from "../../player/playSound";
-import "./Piano.css";
+import { VolumeValue } from "../../../player/playSound";
 
 const VolumeSlider = () => {
   const [volume, setVolume] = useState(100);

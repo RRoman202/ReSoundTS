@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Slider } from "antd";
-import { PanValue } from "../../player/playSound";
-import "./Piano.css";
+import { PanValue } from "../../../player/playSound";
+// import "./Piano.css";
 
 const PannerSlider = () => {
   const [pan, setPan] = useState(0);

@@ -1,8 +1,8 @@
 import * as Tone from "tone";
-import { sampler } from "../../player/playSound";
+import { sampler } from "../../../player/playSound";
 
-import { m } from "../../player/playCanvas";
-import GetNotes from "../../player/Notes";
+import { m } from "../../../player/playCanvas";
+import GetNotes from "../../../player/Notes";
 export function RecordCanvas() {
   const notes: string[] = GetNotes();
   let notesplay: { [key: number]: string[] } = {};

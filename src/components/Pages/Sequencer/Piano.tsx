@@ -1,21 +1,21 @@
 import React from "react";
-import VolumeSlider from "./VolumeSoundControl";
-import ModalChooseSound from "./ModalChooseSound";
-import BpmInput from "./chooseBPM";
-import CanvasTimeSignature from "./TimeSignatureBar";
-import { ClearCanv } from "../Canvas/ClearCanvasBtn";
-import { RecordCanvas } from "./SaveAudio";
-import "./SaveAudio";
-import PianoTiles from "./PianoTiles";
+import VolumeSlider from "../../sequencer/SoundControl/VolumeSoundControl";
+import ModalChooseSound from "../../sequencer/SoundControl/Modals/ModalChooseSound";
+import BpmInput from "../../sequencer/SoundControl/chooseBPM";
+import CanvasTimeSignature from "../../sequencer/ui/TimeSignatureBar";
+import { ClearCanv } from "../../Canvas/ClearCanvasBtn";
+import { RecordCanvas } from "../../sequencer/SoundControl/SaveAudio";
+import "../../sequencer/SoundControl/SaveAudio";
+import PianoTiles from "../../sequencer/ui/PianoTiles";
 import { observer } from "mobx-react";
-import Getnotes from "../../player/Notes";
-import { PlayCanv } from "../../player/playCanvas";
-import "./SaveAudio";
+import Getnotes from "../../../player/Notes";
+import { PlayCanv } from "../../../player/playCanvas";
+import "../../sequencer/SoundControl/SaveAudio";
 import { Button } from "antd";
 import "./Piano.css";
-import { url, filename } from "./chooseSound";
-import { backDown, backUp } from "./scrollFunction";
-import "../../handlers/keyboardHandler";
+import { url, filename } from "../../sequencer/SoundControl/chooseSound";
+import { backDown, backUp } from "../../sequencer/Helpers/scrollFunction";
+import "../../../handlers/keyboardHandler";
 import { Row, Layout, Tooltip } from "antd";
 import {
   CaretUpOutlined,
@@ -26,8 +26,8 @@ import {
   PauseCircleOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
-import { GridCanvas } from "../Canvas/Canvas";
-import { BaseUrl } from "../../player/playSound";
+import { GridCanvas } from "../../Canvas/Canvas";
+import { BaseUrl } from "../../../player/playSound";
 const notes = Getnotes();
 let isPlaying = false;
 const { Header, Content, Footer } = Layout;
@@ -94,20 +94,22 @@ const Piano = observer(() => {
               }}
             >
               <PianoTiles></PianoTiles>
+              <div>
+                <CanvasTimeSignature
+                  width={1920}
+                  height={15}
+                  spacing={160}
+                ></CanvasTimeSignature>
+                <div className="grid-canvas">
+                  <PlayCanv></PlayCanv>
 
-              <div className="grid-canvas">
-                <PlayCanv></PlayCanv>
-                <div>
-                  <CanvasTimeSignature
-                    width={1920}
-                    height={20}
-                    spacing={160}
-                  ></CanvasTimeSignature>
-                  <GridCanvas
-                    rows={notes.length}
-                    cols={48}
-                    cellSize={40}
-                  ></GridCanvas>
+                  <div>
+                    <GridCanvas
+                      rows={notes.length}
+                      cols={48}
+                      cellSize={40}
+                    ></GridCanvas>
+                  </div>
                 </div>
               </div>
             </Row>

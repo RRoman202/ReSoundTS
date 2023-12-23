@@ -1,7 +1,10 @@
 import { Modal, Button } from "antd";
 import { useState } from "react";
+import ChooseSoundFunction from "../chooseSound";
+import { url, filename } from "../chooseSound";
+import { BaseUrl } from "../../../../player/playSound";
 
-function ModalReverb() {
+function ModalChooseSound() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -22,18 +25,21 @@ function ModalReverb() {
         className="choose-sound-button"
         onClick={showModal}
       >
-        Эхо
+        Выбрать звук
       </Button>
       <Modal
-        title="Эхо"
+        title="Выбор звука"
         open={isModalOpen}
         okText="Ок"
         cancelText="Отмена"
         onOk={handleOk}
         onCancel={handleCancel}
-      ></Modal>
+      >
+        <ChooseSoundFunction></ChooseSoundFunction>
+      </Modal>
+      <BaseUrl url={url} filename={filename}></BaseUrl>
     </>
   );
 }
 
-export default ModalReverb;
+export default ModalChooseSound;

@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from "react";
-import "../../components/Pages/Piano.css";
 
 interface CanvasProps {
   width: number;
