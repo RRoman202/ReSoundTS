@@ -5,4 +5,5 @@ ReSound предоставляет следующие возможности:
 
 ## Ссылка
 
+https://resound-lime.vercel.app/piano
 
