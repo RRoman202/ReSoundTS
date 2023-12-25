@@ -96,7 +96,7 @@
   height: 64px;
 }
 .grid-canvas {
-  overflow-x: auto;
+  overflow: auto;
   display: flex;
   flex-direction: row;
 }
@@ -149,4 +149,9 @@ body::-webkit-scrollbar {
 }
 .contentLayout {
   overflow: auto;
+}
+.pianoTilesContainer {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
 }

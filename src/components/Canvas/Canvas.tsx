@@ -22,29 +22,32 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
     return rows;
   });
 
+  const [visibleGrid, setVisibleGrid] = useState<boolean[][]>([]);
+
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [draggedCell, setDraggedCell] = useState<{
     row: number;
     col: number;
   } | null>(null);
+
   function ClearCanvas() {
-    setGrid(
-      Array.from({ length: props.rows }, () =>
-        Array.from({ length: props.cols }, () => false)
-      )
+    const newGrid = Array.from({ length: props.rows }, () =>
+      Array.from({ length: props.cols }, () => false)
     );
+    setGrid(newGrid);
+    setVisibleGrid(newGrid);
   }
 
   function drawCells() {
     const canvas = canvasRef.current;
     const ctx = canvas!.getContext("2d");
-
     if (ctx) {
       ctx.clearRect(0, 0, canvas!.width, canvas!.height);
       ctx.fillStyle = "#2D2E2E";
       ctx.fillRect(0, 0, canvas!.width, canvas!.height);
-      for (let row = 0; row < props.rows; row++) {
-        for (let col = 0; col < props.cols; col++) {
+
+      for (let row = 0; row < visibleGrid.length; row++) {
+        for (let col = 0; col < visibleGrid[row].length; col++) {
           if (notes[row].includes("#")) {
             ctx.fillStyle = "#2e3e48";
             ctx.fillRect(
@@ -64,8 +67,9 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
           }
         }
       }
-      for (let row = 0; row < props.rows; row++) {
-        for (let col = 0; col < props.cols; col++) {
+
+      for (let row = 0; row < visibleGrid.length; row++) {
+        for (let col = 0; col < visibleGrid[row].length; col++) {
           if (grid[row][col]) {
             ctx.fillStyle = "lightblue";
             ctx.fillRect(
@@ -95,9 +99,34 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
       }
     }
   }
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const rect = canvas!.getBoundingClientRect();
+    const visibleRows = Math.ceil(rect.height / props.cellSize);
+    const visibleCols = Math.ceil(rect.width / props.cellSize);
+    const startRow = Math.floor(window.scrollY / props.cellSize);
+    const startCol = Math.floor(rect.left / props.cellSize);
+
+    const newVisibleGrid: boolean[][] = [];
+    for (let row = startRow; row < startRow + visibleRows; row++) {
+      const newRow: boolean[] = [];
+      for (let col = startCol; col < startCol + visibleCols; col++) {
+        if (row < props.rows && col < props.cols) {
+          newRow.push(grid[row][col]);
+        } else {
+          newRow.push(false);
+        }
+      }
+      newVisibleGrid.push(newRow);
+    }
+
+    setVisibleGrid(newVisibleGrid);
+  }, [props.rows, props.cols, props.cellSize]);
+
   useEffect(() => {
     drawCells();
-  }, [grid]);
+  }, [visibleGrid]);
 
   function handleClick(row: number, col: number) {
     const newGrid = [...grid];
@@ -127,6 +156,7 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
   function handleMouseUp() {
     setIsDragging(false);
     setDraggedCell(null);
+    drawCells();
   }
 
   return (
@@ -151,7 +181,6 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
         }}
       />
       <Canv ClearCanvass={ClearCanvas}></Canv>
-
       <Matrix grid={grid}></Matrix>
     </div>
   );
