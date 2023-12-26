@@ -5,6 +5,7 @@ import Piano from "./components/Pages/Sequencer/Piano";
 import "./App.css";
 
 function App() {
+  document.title = "ReSound";
   return (
     <div className="App">
       <header>
