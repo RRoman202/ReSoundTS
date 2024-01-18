@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { sampler } from "./playSound";
 import * as Tone from "tone";
 import { Prog } from "../components/Pages/Sequencer/Piano";
-// import "../components/Pages/Piano.css";
 
 const notes: string[] = GetNotes();
 

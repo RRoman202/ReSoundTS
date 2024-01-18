@@ -21,6 +21,7 @@ const CanvasTimeSignature: React.FC<CanvasProps> = ({
 
       if (context) {
         context.clearRect(0, 0, width, height);
+        context.imageSmoothingEnabled = true;
 
         let x = spacing;
         const y = height / 2;

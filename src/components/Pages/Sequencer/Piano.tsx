@@ -2,6 +2,7 @@ import React from "react";
 import VolumeSlider from "../../sequencer/SoundControl/VolumeSoundControl";
 import ModalChooseSound from "../../sequencer/SoundControl/Modals/ModalChooseSound";
 import BpmInput from "../../sequencer/SoundControl/chooseBPM";
+import { ConfigProvider, theme } from "antd";
 import CanvasTimeSignature from "../../sequencer/ui/TimeSignatureBar";
 import { ClearCanv } from "../../Canvas/ClearCanvasBtn";
 import { RecordCanvas } from "../../sequencer/SoundControl/SaveAudio";
