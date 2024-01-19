@@ -184,3 +184,9 @@ body::-webkit-scrollbar {
   display: flex;
   justify-content: flex-start;
 }
+.pencil-button {
+  margin-left: 440px;
+}
+.select-button {
+  margin-left: 10px;
+}

@@ -16,7 +16,8 @@ import "./Piano.css";
 import { url, filename } from "../../sequencer/SoundControl/chooseSound";
 import { backDown, backUp } from "../../sequencer/Helpers/scrollFunction";
 import "../../../handlers/keyboardHandler";
-import { Row, Layout, Tooltip } from "antd";
+import { Row, Layout, Tooltip, Space, Radio } from "antd";
+
 import {
   CaretUpOutlined,
   CaretRightOutlined,
@@ -25,6 +26,8 @@ import {
   BorderOutlined,
   PauseCircleOutlined,
   DeleteOutlined,
+  EditOutlined,
+  RadiusUprightOutlined,
 } from "@ant-design/icons";
 import { GridCanvas } from "../../Canvas/Canvas";
 import { BaseUrl } from "../../../player/playSound";
@@ -81,6 +84,22 @@ const Piano = observer(() => {
                 onClick={ClearCanv}
               ></Button>
             </Tooltip>
+            <Radio.Group
+              defaultValue="a"
+              buttonStyle="solid"
+              className="pencil-button"
+            >
+              <Radio.Button value="a">
+                <Tooltip title="Карандаш">
+                  <EditOutlined></EditOutlined>
+                </Tooltip>
+              </Radio.Button>
+              <Radio.Button value="b">
+                <Tooltip title="Выделение">
+                  <RadiusUprightOutlined />
+                </Tooltip>
+              </Radio.Button>
+            </Radio.Group>
 
             <SoundTwoTone className="soundicon" />
             <VolumeSlider></VolumeSlider>
