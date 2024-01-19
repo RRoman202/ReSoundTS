@@ -1,4 +1,4 @@
-export function backUp(): void {
+export function backUp() {
   var element = document.getElementById("contentLayout");
   element?.scrollTo({
     top: 0,
@@ -6,7 +6,7 @@ export function backUp(): void {
     behavior: "smooth",
   });
 }
-export function backDown(): void {
+export function backDown() {
   var element = document.getElementById("contentLayout");
   element?.scrollTo({
     top: element.scrollHeight,

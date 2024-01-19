@@ -30,7 +30,7 @@ body {
   position: sticky;
   left: 0;
   z-index: 10;
-  background-color: #26252d;
+  background-color: transparent;
   margin-top: 15px;
 }
 .selectSound {

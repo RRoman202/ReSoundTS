@@ -20,7 +20,7 @@ export default function NavBar() {
       </div>
       <div className="nav-btn">
         <Space wrap>
-          <Button shape="circle" onClick={changeTheme}>
+          <Button shape="circle" onClick={changeTheme} id="themeButton">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
