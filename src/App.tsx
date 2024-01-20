@@ -9,23 +9,15 @@ import "./App.css";
 function App() {
   document.title = "ReSound";
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: "#1677ff",
-        },
-      }}
-    >
-      <div id="App">
-        <Router>
-          <Navbar></Navbar>
-          <Routes>
-            <Route path="/piano" element={<Piano />} />
-            <Route path="/home" element={<Home />} />
-          </Routes>
-        </Router>
-      </div>
-    </ConfigProvider>
+    <div id="App">
+      <Router>
+        <Navbar></Navbar>
+        <Routes>
+          <Route path="/piano" element={<Piano />} />
+          <Route path="/home" element={<Home />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

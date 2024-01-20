@@ -3,12 +3,14 @@ import { NavLink } from "react-router-dom";
 import { Button, Space } from "antd";
 import changeTheme from "./changeTheme";
 import "./Navbar.css";
+import logo from "./logo.png";
 
 export default function NavBar() {
   return (
     <nav className="navbar-container">
       <div className="nav-menu">
-        <p className="name">ReSound</p>
+        <img src={logo} alt="Логотип" className="logo" />
+
         <div className="divMenu">
           <NavLink to="/home" className="navbar-link">
             Главная
