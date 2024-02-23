@@ -1,5 +1,5 @@
 import GetNotes from "../player/Notes";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { sampler } from "./playSound";
 import * as Tone from "tone";
 import { Prog } from "../components/Pages/Sequencer/Piano";
@@ -32,8 +32,18 @@ export const PlayCanv: React.FC = () => {
   let index = 0;
   let notesplay: { [key: number]: string[] } = {};
   const [position, setPosition] = useState<number>(0);
+  const positionRef = useRef<number>(0);
 
   let isPlaying: boolean = false;
+
+  useEffect(() => {
+    const div = document.getElementById("movingDiv");
+
+    if (div) {
+      div.style.left = position * 40 - 40 + "px";
+    }
+  }, [position]);
+
   function GetNotesPlay() {
     const matrix = m;
     const numRows: number = matrix.length;
@@ -99,13 +109,16 @@ export const PlayCanv: React.FC = () => {
     <>
       <div style={{ position: "relative" }}>
         <div
+          id="movingDiv"
           style={{
             position: "absolute",
-            left: (position - 1) * 40 + "px",
+            left: position * 40 - 40 + "px",
+            transition: "left 0.2s ease",
             visibility: "visible",
             width: "3px",
             height: "3360px",
             backgroundColor: "orange",
+            boxShadow: "-5px 4px 2px 5px rgba(255, 195, 0, 0.2)",
           }}
         ></div>
       </div>

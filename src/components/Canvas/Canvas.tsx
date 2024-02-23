@@ -40,6 +40,7 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
 
   function drawCells() {
     const canvas = canvasRef.current;
+
     const ctx = canvas!.getContext("2d");
     if (ctx) {
       ctx.clearRect(0, 0, canvas!.width, canvas!.height);
@@ -72,6 +73,8 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
         for (let col = 0; col < visibleGrid[row].length; col++) {
           if (grid[row][col]) {
             ctx.fillStyle = "lightblue";
+
+            //canvas!.style.cursor = "pointer";
             ctx.fillRect(
               col * props.cellSize,
               row * props.cellSize,
@@ -79,8 +82,7 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
               props.cellSize
             );
             ctx.fillStyle = "black";
-            //@ts-ignore
-            ctx.textRendering = "geometricPrecision";
+
             ctx.imageSmoothingEnabled = false;
             ctx.fillText(
               findNote(row),
