@@ -6,9 +6,7 @@
   padding: 10px;
   z-index: 1;
 }
-.dark .navbar-container {
-  background: #2c3531;
-}
+
 .navbar-link {
   color: #ccccff;
   display: flex;

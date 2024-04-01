@@ -190,3 +190,13 @@ body::-webkit-scrollbar {
 .select-button {
   margin-left: 10px;
 }
+canvas {
+  cursor: url(pencil-fill.svg), auto;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Высота экрана */
+}

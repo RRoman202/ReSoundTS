@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import VolumeSlider from "../../sequencer/SoundControl/VolumeSoundControl";
 import ModalChooseSound from "../../sequencer/SoundControl/Modals/ModalChooseSound";
 import BpmInput from "../../sequencer/SoundControl/chooseBPM";
@@ -16,7 +16,7 @@ import "./Piano.css";
 import { url, filename } from "../../sequencer/SoundControl/chooseSound";
 import { backDown, backUp } from "../../sequencer/Helpers/scrollFunction";
 import "../../../handlers/keyboardHandler";
-import { Row, Layout, Tooltip, Space, Radio } from "antd";
+import { Row, Layout, Tooltip, Space, Radio, Spin } from "antd";
 
 import {
   CaretUpOutlined,
@@ -54,6 +54,21 @@ export const Prog: React.FC<ProgressBarProps> = ({
   return null;
 };
 const Piano = observer(() => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+  if (loading) {
+    return (
+      <div className="spinner-container">
+        <Spin size="large" />
+      </div>
+    );
+  }
   return (
     <>
       <Layout className="layoutPiano">

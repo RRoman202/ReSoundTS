@@ -15,9 +15,6 @@ export default function NavBar() {
           <NavLink to="/home" className="navbar-link">
             Главная
           </NavLink>
-          <NavLink to="/piano" className="navbar-link">
-            Пианинко
-          </NavLink>
         </div>
       </div>
       <div className="nav-btn">
