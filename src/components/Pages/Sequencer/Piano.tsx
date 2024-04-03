@@ -29,6 +29,7 @@ import {
   EditOutlined,
   RadiusUprightOutlined,
 } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 import { GridCanvas } from "../../Canvas/Canvas";
 import { BaseUrl } from "../../../player/playSound";
 const notes = Getnotes();
@@ -55,6 +56,8 @@ export const Prog: React.FC<ProgressBarProps> = ({
 };
 const Piano = observer(() => {
   const [loading, setLoading] = useState(true);
+  const [cols, setCols] = useState(48);
+  const [widthTime, setWidthTime] = useState(1920);
   useEffect(() => {
     const fetchData = async () => {
       setLoading(false);
@@ -69,6 +72,11 @@ const Piano = observer(() => {
       </div>
     );
   }
+
+  const addCols = () => {
+    setCols(cols + 48); // Увеличиваем количество колонок на 48
+    setWidthTime(widthTime + 1920);
+  };
   return (
     <>
       <Layout className="layoutPiano">
@@ -130,7 +138,7 @@ const Piano = observer(() => {
               <PianoTiles></PianoTiles>
               <div>
                 <CanvasTimeSignature
-                  width={1920}
+                  width={widthTime}
                   height={15}
                   spacing={160}
                 ></CanvasTimeSignature>
@@ -140,12 +148,20 @@ const Piano = observer(() => {
                   <div>
                     <GridCanvas
                       rows={notes.length}
-                      cols={48}
+                      cols={cols}
                       cellSize={40}
+                      key={cols}
                     ></GridCanvas>
                   </div>
                 </div>
               </div>
+              <Button
+                className="addColsButton"
+                onClick={addCols}
+                type="primary"
+                icon={<PlusOutlined />}
+                size="large"
+              ></Button>
             </Row>
           </div>
         </Content>

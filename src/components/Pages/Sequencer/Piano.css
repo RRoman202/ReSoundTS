@@ -169,6 +169,15 @@ body::-webkit-scrollbar {
   top: 0;
   z-index: 1;
 }
+.addColsButton {
+  border-radius: 5px;
+  position: sticky;
+  top: 40vh;
+
+  margin-left: 5px;
+
+  z-index: 1;
+}
 .bpm-input .ant-input-number-group-addon {
   color: white;
   background-color: #1677ff;
