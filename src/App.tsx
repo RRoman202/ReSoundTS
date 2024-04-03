@@ -4,10 +4,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/NavBar/Navbar";
 import Piano from "./components/Pages/Sequencer/Piano";
 import Home from "./components/Pages/Home/Home";
+import changeTheme from "./components/NavBar/changeTheme";
 import "./App.css";
 
 function App() {
   document.title = "ReSound";
+
   return (
     <div id="App">
       <Router>

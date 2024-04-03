@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ModalCreateProject from "./Modals/ModalCreateProject";
+import changeTheme from "../../NavBar/changeTheme";
 import {
   UploadOutlined,
   UserOutlined,
@@ -9,6 +10,7 @@ import {
   LikeOutlined,
   BarChartOutlined,
   PlusOutlined,
+  QuestionCircleOutlined,
 } from "@ant-design/icons";
 import {
   Layout,
@@ -21,9 +23,12 @@ import {
   List,
   Card,
   Image,
+  FloatButton,
+  Input,
 } from "antd";
 import "./Home.css";
 
+const { Search } = Input;
 const { Header, Content, Footer, Sider } = Layout;
 const { Title } = Typography;
 const { Meta } = Card;
@@ -40,17 +45,17 @@ const items = customLabels.map((label, index) => ({
 const projects = [
   {
     title: "Проект1",
-    image: "https://via.placeholder.com/150",
+    image: "https://via.placeholder.com/50",
     description: "Описание 1",
   },
   {
     title: "Проект2",
-    image: "https://via.placeholder.com/150",
+    image: "https://via.placeholder.com/50",
     description: "Описание 1",
   },
   {
     title: "Проект3",
-    image: "https://via.placeholder.com/150",
+    image: "https://via.placeholder.com/50",
     description: "Описание 1",
   },
 ];
@@ -118,36 +123,48 @@ const Home = () => {
           }}
         >
           <div className="creatediv">
-            <Title level={2}>Создать проект</Title>
+            <Title level={2}>Создать музыку</Title>
             <ModalCreateProject></ModalCreateProject>
           </div>
+          <Title level={4}>Мои музыкальные произведения</Title>
+          <Search
+            style={{ marginTop: 20 }}
+            placeholder="Поиск музыкальных произведений"
+            enterButton
+          />
           <List
             className="listprojects"
             grid={{ gutter: 16, column: 3 }}
             dataSource={projects}
             renderItem={(item) => (
               <List.Item>
-                <Card
-                  className="card-project"
-                  hoverable
-                  cover={
-                    <Image
-                      alt={item.title}
-                      src={item.image}
-                      style={{ objectFit: "cover", height: 150 }}
-                    />
-                  }
-                >
-                  <Card.Meta
-                    title={item.title}
-                    description={item.description}
-                  />
+                <Card className="card-project" hoverable>
+                  <div style={{ display: "flex" }}>
+                    <div style={{ flex: 1 }}>
+                      <Image
+                        alt={item.title}
+                        src={item.image}
+                        style={{ objectFit: "cover", height: 50 }}
+                      />
+                    </div>
+                    <div style={{ flex: 2, paddingLeft: 16 }}>
+                      <Card.Meta
+                        title={item.title}
+                        description={item.description}
+                      />
+                    </div>
+                  </div>
                 </Card>
               </List.Item>
             )}
           />
         </Content>
       </Layout>
+      <FloatButton
+        icon={<QuestionCircleOutlined />}
+        type="primary"
+        style={{ right: 94 }}
+      />
     </Layout>
   );
 };
