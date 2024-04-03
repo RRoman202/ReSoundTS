@@ -1,11 +1,10 @@
 import React from "react";
-import { ConfigProvider, theme } from "antd";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/NavBar/Navbar";
 import Piano from "./components/Pages/Sequencer/Piano";
 import Home from "./components/Pages/Home/Home";
-import changeTheme from "./components/NavBar/changeTheme";
 import "./App.css";
+import MainTrack from "./components/Pages/MainTrack/MainTrack";
 
 function App() {
   document.title = "ReSound";
@@ -17,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/piano" element={<Piano />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/main" element={<MainTrack />} />
         </Routes>
       </Router>
     </div>

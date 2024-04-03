@@ -22,7 +22,7 @@ function ModalChooseSound() {
   const handleOk = () => {
     setIsLoading(true);
     setIsModalOpen(false);
-    navigate("/piano");
+    navigate("/main");
   };
 
   const handleCancel = () => {
