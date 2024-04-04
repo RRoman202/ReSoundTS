@@ -3,6 +3,7 @@ import { Button, List, Card, Slider } from "antd";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 import { useNavigate } from "react-router-dom";
+import "./MainTrack.css";
 
 interface Template {
   id: number;
@@ -30,7 +31,11 @@ const TemplateList: React.FC<TemplateListProps> = ({
   };
 
   return (
-    <Card title="Шаблоны">
+    <Card
+      headStyle={{ backgroundColor: "#1677ff" }}
+      title="Шаблоны"
+      className="listTemplates"
+    >
       <Button
         type="primary"
         onClick={onCreateTemplate}
@@ -43,7 +48,7 @@ const TemplateList: React.FC<TemplateListProps> = ({
         renderItem={(item) => (
           <List.Item>
             <div ref={drag} onClick={createTemplate}>
-              <Card>{item.name}</Card>
+              <Card style={{ backgroundColor: "lightblue" }}>{item.name}</Card>
             </div>
             <Slider defaultValue={30} style={{ width: "100px" }} />
           </List.Item>

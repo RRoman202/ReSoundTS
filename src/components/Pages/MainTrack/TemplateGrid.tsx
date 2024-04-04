@@ -2,6 +2,7 @@ import React from "react";
 import { Card } from "antd";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
+import "./MainTrack.css";
 
 const AudioTrackGrid: React.FC = () => {
   const [, drop] = useDrop({
@@ -18,9 +19,11 @@ const AudioTrackGrid: React.FC = () => {
 
   return (
     <Card
+      headStyle={{ backgroundColor: "#1677ff" }}
       title="Секвенсор"
       style={{ height: "100%" }}
       bodyStyle={{ padding: 0 }}
+      className="CardGrid"
     >
       <div
         ref={drop}
@@ -49,13 +52,12 @@ const AudioTrackGrid: React.FC = () => {
                 style={{
                   gridRow: `${rowIndex + 1}`,
                   gridColumn: `${colIndex + 2}`,
-                  background: "white",
+
                   border: "1px solid #ccc",
                   height: "50px",
                 }}
-              >
-                {/* Содержимое ячейки сетки */}
-              </div>
+                className="GridMainTrack"
+              ></div>
             ))}
           </React.Fragment>
         ))}
