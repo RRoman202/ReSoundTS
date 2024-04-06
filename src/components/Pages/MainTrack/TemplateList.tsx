@@ -3,6 +3,7 @@ import { Button, List, Card, Slider } from "antd";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 import { useNavigate } from "react-router-dom";
+import { hideNav } from "./HiddenNavbar";
 import "./MainTrack.css";
 
 interface Template {
@@ -27,6 +28,7 @@ const TemplateList: React.FC<TemplateListProps> = ({
   const navigate = useNavigate();
 
   const createTemplate = () => {
+    hideNav();
     navigate("/piano");
   };
 

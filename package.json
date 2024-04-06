@@ -13,7 +13,7 @@
     "@types/node": "^16.18.58",
     "@types/react": "^18.2.27",
     "@types/react-dom": "^18.2.12",
-    "antd": "^5.9.4",
+    "antd": "^5.16.1",
     "audiokeys": "^0.1.1",
     "craco-less": "^3.0.1",
     "fluent-ffmpeg": "^2.1.2",
@@ -60,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "@types/antd": "^1.0.0",
     "@types/p5": "^1.7.6",
     "@types/react-virtualized": "^9.21.29",
     "@types/recorder-js": "^1.0.4"

@@ -7,7 +7,7 @@ import logo from "./logo.png";
 
 export default function NavBar() {
   return (
-    <nav className="navbar-container">
+    <nav className="navbar-container" id="navbar">
       <div className="nav-menu">
         <img src={logo} alt="Логотип" className="logo" />
 

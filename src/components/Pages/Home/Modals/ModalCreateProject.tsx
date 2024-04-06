@@ -2,6 +2,7 @@ import { Modal, Button, Form, Input, Checkbox, Spin } from "antd";
 import { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { hideNav, viewNav } from "../../MainTrack/HiddenNavbar";
 const { TextArea } = Input;
 
 type FieldType = {
@@ -22,6 +23,7 @@ function ModalChooseSound() {
   const handleOk = () => {
     setIsLoading(true);
     setIsModalOpen(false);
+    hideNav();
     navigate("/main");
   };
 

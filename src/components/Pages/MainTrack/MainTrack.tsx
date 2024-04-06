@@ -3,7 +3,10 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import TemplateList from "./TemplateList";
 import AudioTrackGrid from "./TemplateGrid";
-import { Layout, Tooltip, Button } from "antd";
+import { hideNav, viewNav } from "./HiddenNavbar";
+import { Layout, Tooltip, Button, Drawer, Space, Flex } from "antd";
+import { useNavigate } from "react-router-dom";
+
 import {
   CaretUpOutlined,
   CaretRightOutlined,
@@ -32,6 +35,23 @@ const MainTrack: React.FC = () => {
     { id: 3, name: "Шаблон 3" },
   ]);
 
+  const navigate = useNavigate();
+
+  const [openDrawer, setOpenDrawer] = useState(false);
+
+  const showDrawer = () => {
+    setOpenDrawer(true);
+  };
+
+  const onClose = () => {
+    setOpenDrawer(false);
+  };
+
+  const closePage = () => {
+    navigate("/home");
+    viewNav();
+  };
+
   const handleCreateTemplate = () => {
     const newTemplate: Template = {
       id: templates.length + 1,
@@ -42,8 +62,25 @@ const MainTrack: React.FC = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
+      <Drawer title="Файл" placement="left" onClose={onClose} open={openDrawer}>
+        <Space direction="vertical">
+          <h2>Название проекта</h2>
+          <Flex vertical gap="small" style={{ width: "300px" }}>
+            <Button type="primary">Сохранить</Button>
+            <Button type="primary">Сохранить как</Button>
+            <Button type="primary">Экспорт</Button>
+            <Button type="primary" onClick={closePage}>
+              Выйти
+            </Button>
+          </Flex>
+        </Space>
+      </Drawer>
       <Layout className="MainLayout">
-        <Header className="header"></Header>
+        <Header className="header">
+          <Button type="primary" onClick={showDrawer}>
+            Файл
+          </Button>
+        </Header>
         <div style={{ display: "flex", marginTop: "40px" }}>
           <div style={{ flex: 1, marginLeft: "10px" }}>
             <TemplateList

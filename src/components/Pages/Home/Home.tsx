@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ModalCreateProject from "./Modals/ModalCreateProject";
 import changeTheme from "../../NavBar/changeTheme";
+import { hideNav, viewNav } from "../MainTrack/HiddenNavbar";
 import {
   UploadOutlined,
   UserOutlined,
