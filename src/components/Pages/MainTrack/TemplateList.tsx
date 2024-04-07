@@ -5,6 +5,17 @@ import { ItemTypes } from "./ItemTypes";
 import { useNavigate } from "react-router-dom";
 import { hideNav } from "./HiddenNavbar";
 import "./MainTrack.css";
+import {
+  CaretUpOutlined,
+  CaretRightOutlined,
+  CaretDownOutlined,
+  SoundTwoTone,
+  BorderOutlined,
+  PauseCircleOutlined,
+  DeleteOutlined,
+  EditOutlined,
+  RadiusUprightOutlined,
+} from "@ant-design/icons";
 
 interface Template {
   id: number;
@@ -34,7 +45,7 @@ const TemplateList: React.FC<TemplateListProps> = ({
 
   return (
     <Card
-      headStyle={{ backgroundColor: "#1677ff" }}
+      headStyle={{ backgroundColor: "#1677ff", color: "white" }}
       title="Шаблоны"
       className="listTemplates"
     >
@@ -50,8 +61,17 @@ const TemplateList: React.FC<TemplateListProps> = ({
         renderItem={(item) => (
           <List.Item>
             <div ref={drag} onClick={createTemplate}>
-              <Card style={{ backgroundColor: "lightblue" }}>{item.name}</Card>
+              <Card
+                style={{
+                  backgroundColor: "lightblue",
+                  width: "300px",
+                  textAlign: "center",
+                }}
+              >
+                {item.name}
+              </Card>
             </div>
+            <SoundTwoTone className="soundMainIcon" />
             <Slider defaultValue={30} style={{ width: "100px" }} />
           </List.Item>
         )}

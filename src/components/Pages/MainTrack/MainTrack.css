@@ -29,3 +29,15 @@
 .darl .CardGrid {
   background-color: #2c3531;
 }
+
+.headerMain {
+  background-color: white;
+  padding: 5px;
+}
+
+.radioMain {
+  height: 30px;
+}
+
+.soundMainIcon {
+}

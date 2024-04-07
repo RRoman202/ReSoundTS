@@ -5,6 +5,7 @@ import TemplateList from "./TemplateList";
 import AudioTrackGrid from "./TemplateGrid";
 import { hideNav, viewNav } from "./HiddenNavbar";
 import { Layout, Tooltip, Button, Drawer, Space, Flex } from "antd";
+import BpmInput from "../../sequencer/SoundControl/chooseBPM";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -55,7 +56,7 @@ const MainTrack: React.FC = () => {
   const handleCreateTemplate = () => {
     const newTemplate: Template = {
       id: templates.length + 1,
-      name: `Template ${templates.length + 1}`,
+      name: `Шаблон ${templates.length + 1}`,
     };
     setTemplates([...templates, newTemplate]);
   };
@@ -80,6 +81,7 @@ const MainTrack: React.FC = () => {
           <Button type="primary" onClick={showDrawer}>
             Файл
           </Button>
+          <BpmInput></BpmInput>
         </Header>
         <div style={{ display: "flex", marginTop: "40px" }}>
           <div style={{ flex: 1, marginLeft: "10px" }}>
