@@ -97,6 +97,7 @@ export const PlayCanv: React.FC = () => {
     Tone.Transport.cancel();
     Tone.Transport.pause();
     setPosition(newPosition);
+    positionRef.current = newPosition;
     isPlaying = true;
     GetNotesPlay();
     Tone.Transport.scheduleRepeat(playNote, "8n");
