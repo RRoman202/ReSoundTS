@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 interface CanvasProps {
   width: number;
@@ -6,12 +6,27 @@ interface CanvasProps {
   spacing: number;
 }
 
+interface ChangePositionProps {
+  changePosition: (position: number) => void;
+}
+
+let changePosition123: (position: number) => void;
+
+export const ChangePos: React.FC<ChangePositionProps> = ({
+  changePosition,
+}) => {
+  changePosition123 = { changePosition }.changePosition;
+
+  return null;
+};
+
 const CanvasTimeSignature: React.FC<CanvasProps> = ({
   width,
   height,
   spacing,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [position, setPosition] = useState(-1);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -35,8 +50,26 @@ const CanvasTimeSignature: React.FC<CanvasProps> = ({
           x += spacing;
         }
       }
+
+      canvas.addEventListener("click", (event) => {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = event.clientX - rect.left;
+
+        let newPosition = -1;
+        for (let i = 0; i < (width / spacing) * 4; i++) {
+          if (mouseX < (spacing / 4) * (i + 1)) {
+            newPosition = i;
+            break;
+          }
+        }
+
+        if (newPosition !== position) {
+          setPosition(newPosition);
+          changePosition123(newPosition);
+        }
+      });
     }
-  }, [width, height, spacing]);
+  }, [position, spacing, width, height]);
 
   return (
     <div className="signature">

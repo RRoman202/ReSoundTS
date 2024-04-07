@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { sampler } from "./playSound";
 import * as Tone from "tone";
 import { Prog } from "../components/Pages/Sequencer/Piano";
+import { ChangePos } from "../components/sequencer/ui/TimeSignatureBar";
 
 const notes: string[] = GetNotes();
 
@@ -89,6 +90,18 @@ export const PlayCanv: React.FC = () => {
       Tone.Transport.start();
     }
   }
+  function changePosition(newPosition: number) {
+    console.log(newPosition);
+    isPlaying = false;
+    index = newPosition;
+    Tone.Transport.cancel();
+    Tone.Transport.pause();
+    setPosition(newPosition);
+    isPlaying = true;
+    GetNotesPlay();
+    Tone.Transport.scheduleRepeat(playNote, "8n");
+    Tone.Transport.start();
+  }
   async function stop() {
     isPlaying = false;
 
@@ -128,6 +141,7 @@ export const PlayCanv: React.FC = () => {
         stopMoving={stop}
         pauseMoving={pause}
       ></Prog>
+      <ChangePos changePosition={changePosition}></ChangePos>
     </>
   );
 };
