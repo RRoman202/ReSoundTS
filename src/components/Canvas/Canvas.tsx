@@ -4,6 +4,7 @@ import { Sound, SoundRemove } from "../../handlers/btnClickPianoRoll";
 import { Matrix } from "../../player/playCanvas";
 import { Canv } from "./ClearCanvasBtn";
 import findNote from "./TextNoteCanvas";
+import { LoadTemp } from "../../components/Pages/Sequencer/loadTemplate";
 
 interface GridCanvasProps {
   rows: number;
@@ -161,6 +162,12 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
     drawCells();
   }
 
+  function loadTemplate(newNotes: boolean[][]) {
+    ClearCanvas();
+    setGrid(newNotes);
+    console.log(newNotes);
+  }
+
   return (
     <div>
       <canvas
@@ -184,6 +191,7 @@ export const GridCanvas: React.FC<GridCanvasProps> = (props) => {
       />
       <Canv ClearCanvass={ClearCanvas}></Canv>
       <Matrix grid={grid}></Matrix>
+      <LoadTemp loadTemplate={loadTemplate}></LoadTemp>
     </div>
   );
 };

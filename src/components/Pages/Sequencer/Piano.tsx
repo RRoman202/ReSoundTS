@@ -9,6 +9,8 @@ import "../../sequencer/SoundControl/SaveAudio";
 import PianoTiles from "../../sequencer/ui/PianoTiles";
 import { observer } from "mobx-react";
 import Getnotes from "../../../player/Notes";
+import SaveTemplateNotes from "./saveTemplate";
+import LoadTemplateNotes from "./loadTemplate";
 import { PlayCanv } from "../../../player/playCanvas";
 import "../../sequencer/SoundControl/SaveAudio";
 import { Button } from "antd";
@@ -77,6 +79,7 @@ const Piano = observer(() => {
     setCols(cols + 48); // Увеличиваем количество колонок на 48
     setWidthTime(widthTime + 1920);
   };
+
   return (
     <>
       <Layout className="layoutPiano">
@@ -107,6 +110,9 @@ const Piano = observer(() => {
                 onClick={ClearCanv}
               ></Button>
             </Tooltip>
+
+            <SaveTemplateNotes></SaveTemplateNotes>
+            <LoadTemplateNotes></LoadTemplateNotes>
             <Radio.Group
               defaultValue="a"
               buttonStyle="solid"
