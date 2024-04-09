@@ -3,21 +3,23 @@ import { sampler } from "../../../player/playSound";
 import { m } from "../../../player/playCanvas";
 import GetNotes from "../../../player/Notes";
 import { Button } from "antd";
+import { saveAs } from "file-saver";
+import "./Piano.css";
 
 export default function SaveTemplateNotes() {
-  const saveNotes = (notes: boolean[][], filename: string) => {
-    const data = { notes };
+  const saveNotes = () => {
+    const data = { notes: m };
     const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", filename);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+
+    const filename = prompt("Введите название файла:");
+    if (filename) {
+      saveAs(blob, filename + ".resound");
+    }
   };
 
   return (
-    <Button onClick={() => saveNotes(m, "template.json")}>Сохранить как</Button>
+    <Button className="save-btn" onClick={saveNotes}>
+      Сохранить
+    </Button>
   );
 }

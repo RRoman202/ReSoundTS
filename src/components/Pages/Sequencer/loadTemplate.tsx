@@ -42,15 +42,15 @@ export default function LoadTemplateNotes() {
 
   useEffect(() => {
     if (notes) {
-      // Do something with the notes
     }
   }, [notes]);
 
   return (
-    <Button>
+    <Button className="load-btn">
       <input
         type="file"
         onChange={(e) => e.target.files?.length && loadNotes(e.target.files[0])}
+        accept=".resound"
       />
     </Button>
   );

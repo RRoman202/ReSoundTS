@@ -209,3 +209,11 @@ canvas {
   align-items: center;
   height: 100vh; /* Высота экрана */
 }
+
+.save-btn {
+  margin-left: 20px;
+}
+
+.load-btn {
+  margin-left: 20px;
+}

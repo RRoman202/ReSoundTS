@@ -16,6 +16,7 @@
     "antd": "^5.16.1",
     "audiokeys": "^0.1.1",
     "craco-less": "^3.0.1",
+    "file-saver": "^2.0.5",
     "fluent-ffmpeg": "^2.1.2",
     "gh-pages": "^6.0.0",
     "mobx": "^6.10.2",
@@ -61,6 +62,7 @@
   },
   "devDependencies": {
     "@types/antd": "^1.0.0",
+    "@types/file-saver": "^2.0.7",
     "@types/p5": "^1.7.6",
     "@types/react-virtualized": "^9.21.29",
     "@types/recorder-js": "^1.0.4"
