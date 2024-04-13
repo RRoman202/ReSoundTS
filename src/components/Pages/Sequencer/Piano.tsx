@@ -10,7 +10,7 @@ import PianoTiles from "../../sequencer/ui/PianoTiles";
 import { observer } from "mobx-react";
 import Getnotes from "../../../player/Notes";
 import SaveTemplateNotes from "./saveTemplate";
-import LoadTemplateNotes from "./loadTemplate";
+import LoadTemplateNotes, { LoadTempCols } from "./loadTemplate";
 import { PlayCanv } from "../../../player/playCanvas";
 import "../../sequencer/SoundControl/SaveAudio";
 import { Button } from "antd";
@@ -80,6 +80,11 @@ const Piano = observer(() => {
     setWidthTime(widthTime + 1920);
   };
 
+  function loadCols(newCols: number) {
+    setCols(newCols);
+    setWidthTime(newCols * 40);
+  }
+
   return (
     <>
       <Layout className="layoutPiano">
@@ -111,7 +116,7 @@ const Piano = observer(() => {
               ></Button>
             </Tooltip>
 
-            <SaveTemplateNotes></SaveTemplateNotes>
+            <SaveTemplateNotes cols={cols}></SaveTemplateNotes>
             <LoadTemplateNotes></LoadTemplateNotes>
             <Radio.Group
               defaultValue="a"
@@ -221,6 +226,7 @@ const Piano = observer(() => {
         </Footer>
       </Layout>
       <BaseUrl url={url} filename={filename}></BaseUrl>
+      <LoadTempCols loadTemplateCols={loadCols}></LoadTempCols>
     </>
   );
 });

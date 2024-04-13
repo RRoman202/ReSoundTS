@@ -6,9 +6,9 @@ import { Button } from "antd";
 import { saveAs } from "file-saver";
 import "./Piano.css";
 
-export default function SaveTemplateNotes() {
+export default function SaveTemplateNotes({ cols }: { cols: number }) {
   const saveNotes = () => {
-    const data = { notes: m };
+    const data = { notes: m, cols };
     const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
 
     const filename = prompt("Введите название файла:");
